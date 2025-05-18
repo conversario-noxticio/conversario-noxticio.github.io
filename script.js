@@ -46,13 +46,13 @@ drawCardBtn.addEventListener("click", () => {
     const front = document.createElement("div");
     front.className = "card-face card-front";
     const imgFront = document.createElement("img");
-    imgFront.src = `images/${cardId}-front.jpg`;
+    imgFront.src = `images/cards/${cardId}-front.jpg`;
     front.appendChild(imgFront);
 
     const back = document.createElement("div");
     back.className = "card-face card-back";
     const imgBack = document.createElement("img");
-    imgBack.src = `images/${cardId}-back.jpg`;
+    imgBack.src = `images/cards/${cardId}-back.jpg`;
     back.appendChild(imgBack);
 
     card.appendChild(front);
@@ -144,7 +144,7 @@ function renderHand() {
     handContainer.innerHTML = "";
     hand.forEach(({ cardId, optionText }) => {
         const img = document.createElement("img");
-        img.src = `images/${cardId}-front.jpg`;
+        img.src = `images/cards/${cardId}-front.jpg`;
         img.onclick = () => openModal(cardId, optionText);
         handContainer.appendChild(img);
     });
@@ -157,13 +157,13 @@ function openModal(cardId, optionText) {
     const front = document.createElement("div");
     front.className = "card-face card-front";
     const imgFront = document.createElement("img");
-    imgFront.src = `images/${cardId}-front.jpg`;
+    imgFront.src = `images/cards/${cardId}-front.jpg`;
     front.appendChild(imgFront);
 
     const back = document.createElement("div");
     back.className = "card-face card-back";
     const imgBack = document.createElement("img");
-    imgBack.src = `images/${cardId}-back.jpg`;
+    imgBack.src = `images/cards/${cardId}-back.jpg`;
     back.appendChild(imgBack);
 
     modalCard.innerHTML = "";
