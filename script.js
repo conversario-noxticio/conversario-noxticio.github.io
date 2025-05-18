@@ -63,7 +63,7 @@ drawCardBtn.addEventListener("click", () => {
 });
 
 function loadOptions(cardId) {
-    const options = cardOptionsData[cardId] || [{ text: "Opción 1", info: "", canSave: true }];
+    const options = cardOptionsData[cardId] || [{ text: "...", info: "", canStore: false }];
     showDecisionOptions(options, cardId);
 }
 
@@ -88,7 +88,7 @@ function showFinalChoice(cardId, option) {
         optionsContainer.appendChild(infoDiv);
     }
 
-    if (option.canSave) {
+    if (option.canStore) {
         const saveBtn = document.createElement("button");
         saveBtn.textContent = "Guardar en mi mano";
         saveBtn.onclick = () => {
@@ -100,17 +100,18 @@ function showFinalChoice(cardId, option) {
         };
         optionsContainer.appendChild(saveBtn);
     }
+    if (option.canDiscard) {
+        const returnBtn = document.createElement("button");
+        returnBtn.textContent = "Devolver al mazo";
+        returnBtn.onclick = () => {
+            remainingCards.push(cardId);
+            cardContainer.innerHTML = "<p>¡Carta devuelta al mazo!</p>";
+            optionsContainer.innerHTML = "";
+            updateAfterChoice();
+        };
+        optionsContainer.appendChild(returnBtn);
+    }
 
-    const returnBtn = document.createElement("button");
-    returnBtn.textContent = "Devolver al mazo";
-    returnBtn.onclick = () => {
-        remainingCards.push(cardId);
-        cardContainer.innerHTML = "<p>¡Carta devuelta al mazo!</p>";
-        optionsContainer.innerHTML = "";
-        updateAfterChoice();
-    };
-
-    optionsContainer.appendChild(returnBtn);
 }
 
 function updateHandIcon() {
