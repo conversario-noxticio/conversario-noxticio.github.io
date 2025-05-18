@@ -101,15 +101,15 @@ function showFinalChoice(cardId, option) {
         optionsContainer.appendChild(saveBtn);
     }
     if (option.canDiscard) {
-        const returnBtn = document.createElement("button");
-        returnBtn.textContent = "Devolver al mazo";
-        returnBtn.onclick = () => {
-            remainingCards.push(cardId);
+        const discardBtn = document.createElement("button");
+        discardBtn.textContent = "Descartar";
+        discardBtn.onclick = () => {
+            //remainingCards.push(cardId);
             cardContainer.innerHTML = "<p>¡Carta devuelta al mazo!</p>";
             optionsContainer.innerHTML = "";
             updateAfterChoice();
         };
-        optionsContainer.appendChild(returnBtn);
+        optionsContainer.appendChild(discardBtn);
     }
 
 }

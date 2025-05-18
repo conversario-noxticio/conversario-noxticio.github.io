@@ -3,7 +3,7 @@
         {
             text: "Te sinceras",
             info: "Le cuentas sobre tu investigación y compartes con ellos tus inquietudes. El Comandante de la guardia, agradecido por tu sinceridad simpatiza con tu noble misión y te ofrece escolta mientras descansas y un amuleto para que lo lleves en tu aventura. Obtienes la carta.",
-            canStore: true, canDiscard: true
+            canStore: true, canDiscard: false
         },
         {
             text: "Mientes",
@@ -15,17 +15,17 @@
         {
             text: "Aceptar",
             info: "Tomas el martillo sin saber muy bien por qué. El espíritu te observa satisfecho. Te acercas a la forja y trabajáis juntos, rodeados de un calor infernal. El metal brilla como si contuviera algo vivo, algo peligroso. A cada golpe, el martillo te quema la piel, pero la euforia crece. Te fundes con el ritmo, en una danza demoníaca de chispas y sudor. Al terminar, el herrero contempla la hoja con orgullo, te lanza una sonrisa ardiente... y desaparece. Descarta una carta aleatoria de tu mano.Vuelves al lugar de origen.",
-            canStore: true, canDiscard: true
+            canStore: false, canDiscard: true
         },
         {
             text: "Retar",
             info: "Lo miras desafiante. Le propones una competencia: quien forje la espada más brillante, gana. Su risa es una carcajada desencajada. —Gana el que forje con más fulgor... y el perdedor deberá un favor con gran fervor. El fuego se aviva. Lanza una moneda.Cara: ganas la carta.Cruz: pierdes y sigues tu camino.",
-            canStore: false, canDiscard: true
+            canStore: true, canDiscard: true
         },
         {
             text: "Engañar",
             info: "Aceptas su propuesta y finges trabajar junto a él. El calor es insoportable, y el espíritu parece disfrutar del sufrimiento. En un descuido, agarras la hoja al rojo vivo y huyes con ella entre las llamas. El grito que lanza detrás de ti no parece humano, pero ya es tarde. Escapas chamuscado, pero con el botín. Te llevas la carta.",
-            canStore: false, canDiscard: true
+            canStore: true, canDiscard: false
         },
         {
             text: "Escapar",
@@ -42,7 +42,7 @@
         {
             text: "Huir",
             info: "Lanza una moneda. CARA: Pierdes dos cartas de evento al azar. CRUZ: Vuelve a sacar una carta de evento.",
-            canStore: false, canDiscard: true
+            canStore: true, canDiscard: true
         },
     ],
     4: [
