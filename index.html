@@ -1,1 +1,43 @@
-﻿ballerina capuchina
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversario Noxticio</title>
+    <link href="images/favicon.png" rel="icon">
+    <link href="images/favicon-apple.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="game-container">
+        <h2>Conversario Noxticio</h2>
+
+        <div class="card-area">
+            <div class="card-container" id="card-container">
+                <!-- Card will be displayed here -->
+            </div>
+
+            <div class="options-container" id="options-container">
+                <!-- Options will be shown here -->
+            </div>
+
+            <button id="draw-card-btn">Sacar carta</button>
+        </div>
+
+        <div class="hand" id="hand-icon">🃏 <span id="hand-count">0</span></div>
+        <div id="hand-container" class="hand-container"></div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-card" id="modal-card">
+                <!-- The expanded card will appear here -->
+            </div>
+            <div id="modal-option-text" class="modal-option-text"></div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
