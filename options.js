@@ -19,7 +19,7 @@
         },
         {
             text: "Retar",
-            info: "Lo miras desafiante. Le propones una competencia: quien forje la espada más brillante, gana. Su risa es una carcajada desencajada. —Gana el que forje con más fulgor... y el perdedor deberá un favor con gran fervor. El fuego se aviva. Lanza una moneda.Cara: ganas la carta.Cruz: pierdes y sigues tu camino.",
+            info: "Lo miras desafiante. Le propones una competencia: quien forje la espada más brillante, gana. Su risa es una carcajada desencajada. —Gana el que forje con más fulgor... y el perdedor deberá un favor con gran fervor. El fuego se aviva. Lanza una moneda. Cara: ganas la carta. Cruz: pierdes y sigues tu camino.",
             canStore: true, canDiscard: true
         },
         {
@@ -29,7 +29,7 @@
         },
         {
             text: "Escapar",
-            info: "La visión te supera. El calor, la mirada del espíritu, las llamas... todo es demasiado. Das media vuelta y corres como puedes entre el fuego. Él te observa alejarte y solo suelta una risa cavernosa antes de volver a golpear el yunque. No ocurre nada.Sigues tu camino.",
+            info: "La visión te supera. El calor, la mirada del espíritu, las llamas... todo es demasiado. Das media vuelta y corres como puedes entre el fuego. Él te observa alejarte y solo suelta una risa cavernosa antes de volver a golpear el yunque. No ocurre nada. Sigues tu camino.",
             canStore: false, canDiscard: true
         },
     ],

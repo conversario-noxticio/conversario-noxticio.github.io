@@ -1,4 +1,4 @@
-﻿let totalCards = Object.keys(cardOptionsData).map(Number); // Array con los IDs de todas las cartas
+﻿let totalCards = Object.keys(cardOptionsData).map(Number);
 let remainingCards = [...totalCards];
 let hand = [];
 let currentCardId = null;
@@ -12,6 +12,8 @@ const handCountSpan = document.getElementById("hand-count");
 const modal = document.getElementById("modal");
 const modalCard = document.getElementById("modal-card");
 const modalOptionText = document.getElementById("modal-option-text");
+
+modalCard.addEventListener("click", () => { modalCard.classList.toggle("flipped"); });
 
 (function init() {
     remainingCards = [...totalCards];
@@ -34,24 +36,28 @@ drawCardBtn.addEventListener("click", () => {
     const card = document.createElement("div");
     card.className = "card";
 
-    card.addEventListener("click", () => {
-        card.classList.toggle("flipped");
-        if (!optionsContainer.hasChildNodes()) {
-            loadOptions(cardId);
-        }
-    });
-
     const front = document.createElement("div");
     front.className = "card-face card-front";
     const imgFront = document.createElement("img");
     imgFront.src = `images/cards/${cardId}-front.jpg`;
+    imgFront.classList.add("card-img");
     front.appendChild(imgFront);
 
     const back = document.createElement("div");
     back.className = "card-face card-back";
     const imgBack = document.createElement("img");
     imgBack.src = `images/cards/${cardId}-back.jpg`;
+    imgBack.classList.add("card-img");
     back.appendChild(imgBack);
+
+    const flip = function () {
+        card.classList.toggle("flipped");
+        if (!optionsContainer.hasChildNodes()) {
+            loadOptions(cardId);
+        }
+    }
+    imgBack.addEventListener("click", flip);
+    imgFront.addEventListener("click", flip);
 
     card.appendChild(front);
     card.appendChild(back);
@@ -90,17 +96,14 @@ function showFinalChoice(cardId, option) {
         const card = cardContainer.querySelector(".card");
         if (!card) return callback();
 
-        // Deshabilitar botones durante animación
         disableOptionButtons(true);
 
         const rect = card.querySelector("div").querySelector("img").getBoundingClientRect();
 
-        // Detectar si está volteada la carta para elegir la cara visible
         const isFlipped = card.classList.contains("flipped");
         const faceSelector = isFlipped ? ".card-back img" : ".card-front img";
         const img = card.querySelector(faceSelector);
 
-        // Crear clon de la imagen visible en lugar de toda la carta
         const clone = img.cloneNode(true);
         clone.style.position = "absolute";
         clone.style.left = `${rect.left}px`;
@@ -111,7 +114,7 @@ function showFinalChoice(cardId, option) {
         clone.style.zIndex = 9999;
 
         document.body.appendChild(clone);
-        card.style.visibility = "hidden"; // Oculta la carta original
+        card.style.visibility = "hidden";
 
         requestAnimationFrame(() => {
             const targetRect = targetElement.getBoundingClientRect();
@@ -147,7 +150,6 @@ function showFinalChoice(cardId, option) {
         const leftHalf = document.createElement("div");
         const rightHalf = document.createElement("div");
 
-        // Detectar si está flipped para elegir la imagen correcta
         const isFlipped = card.classList.contains("flipped");
         const bgImage = isFlipped
             ? `url(images/cards/${cardId}-back.jpg)`
@@ -174,7 +176,6 @@ function showFinalChoice(cardId, option) {
         document.body.appendChild(leftHalf);
         document.body.appendChild(rightHalf);
 
-        // Forzar reflujo para asegurar que las transiciones se apliquen
         void leftHalf.offsetWidth;
         void rightHalf.offsetWidth;
 
@@ -304,21 +305,17 @@ function openModal(cardId, optionText) {
     if (additionalInfo) {
         modalOptionText.innerHTML += `<br><em>${additionalInfo}</em>`;
     }
-
-    modalCard.addEventListener("click", () => modalCard.classList.toggle("flipped"));
 }
 
-modal.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
     if (e.target === modal) {
         modal.style.display = "none";
-    }
-});
+    } else {
+        const isClickInsideHand = handContainer.contains(e.target) || handIcon.contains(e.target);
+        const isModalVisible = modal.style.display === "flex";
 
-document.addEventListener("click", (e) => {
-    const isClickInsideHand = handContainer.contains(e.target) || handIcon.contains(e.target);
-    const isModalVisible = modal.style.display === "flex";
-
-    if (!isClickInsideHand && !isModalVisible) {
-        handContainer.style.display = "none";
+        if (!isClickInsideHand && !isModalVisible) {
+            handContainer.style.display = "none";
+        }
     }
 });
