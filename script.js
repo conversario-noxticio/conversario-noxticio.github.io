@@ -93,7 +93,7 @@ function showFinalChoice(cardId, option) {
         // Deshabilitar botones durante animación
         disableOptionButtons(true);
 
-        const rect = card.getBoundingClientRect();
+        const rect = card.querySelector("div").querySelector("img").getBoundingClientRect();
 
         // Detectar si está volteada la carta para elegir la cara visible
         const isFlipped = card.classList.contains("flipped");
@@ -140,7 +140,8 @@ function showFinalChoice(cardId, option) {
 
         disableOptionButtons(true);
 
-        const rect = card.getBoundingClientRect();
+        const rect = card.querySelector("div").querySelector("img").getBoundingClientRect();
+
         card.style.visibility = "hidden";
 
         const leftHalf = document.createElement("div");
