@@ -165,10 +165,10 @@ function showFinalChoice(cardId, option) {
         });
 
         leftHalf.style.left = `${rect.left}px`;
-        leftHalf.style.backgroundPosition = `left top`;
+        leftHalf.style.backgroundPosition = "left top";
 
         rightHalf.style.left = `${rect.left + rect.width / 2}px`;
-        rightHalf.style.backgroundPosition = `right top`;
+        rightHalf.style.backgroundPosition = "right top";
 
         document.body.appendChild(leftHalf);
         document.body.appendChild(rightHalf);
@@ -203,7 +203,7 @@ function showFinalChoice(cardId, option) {
             animateAndCleanupToHand(() => {
                 hand.push({ cardId, optionText: option.text });
                 updateHandIcon();
-                cardContainer.innerHTML = `<p>¡Carta guardada en tu mano!</p>`;
+                cardContainer.innerHTML = "";
                 optionsContainer.innerHTML = "";
                 updateAfterChoice();
             }, handIcon);
@@ -216,7 +216,7 @@ function showFinalChoice(cardId, option) {
         discardBtn.textContent = "Descartar";
         discardBtn.onclick = () => {
             animateAndCleanupDestroy(() => {
-                cardContainer.innerHTML = "<p>¡Carta descartada!</p>";
+                cardContainer.innerHTML = "";
                 optionsContainer.innerHTML = "";
                 updateAfterChoice();
             });
