@@ -1,11 +1,43 @@
-﻿body {
+﻿/* General styling - dark mode */
+body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
-    padding: 20px;
-    background-color: #fafafa;
+    padding: 0;
+    background-color: #121212;
+    color: #f0f0f0;
 }
 
+/* Top navigation bar */
+.top-bar {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    border-bottom: 1px solid #333;
+}
+
+    .top-bar .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.instagram-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Game layout */
 .game-container {
     max-width: 600px;
     margin: 0 auto;
@@ -21,7 +53,16 @@ button {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
+
+    button:hover {
+        background-color: #444;
+    }
 
 .card-container {
     width: 200px;
@@ -48,8 +89,8 @@ button {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: white;
-    border: 1px solid #ccc;
+    background: #222;
+    border: 1px solid #555;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,6 +113,7 @@ button {
     min-height: 80px;
 }
 
+/* Hand */
 .hand {
     position: fixed;
     bottom: 20px;
@@ -85,7 +127,7 @@ button {
         margin-left: 5px;
     }
 
-/* Horizontal scroll for hand container */
+/* Hand container */
 #hand-container {
     display: none;
     position: absolute;
@@ -95,7 +137,7 @@ button {
     max-height: 180px;
     overflow-x: auto;
     overflow-y: hidden;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(30, 30, 30, 0.95);
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -110,22 +152,31 @@ button {
         cursor: pointer;
     }
 
-/* Modal for expanded card */
+/* Hand empty message */
+.hand-empty-message {
+    color: #aaa;
+    font-size: 18px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Modal */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 2000; /* ← Mayor que el de #hand-container */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    background-color: white;
+    background-color: #1c1c1c;
+    color: #f0f0f0;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -165,8 +216,7 @@ button {
     line-height: 1.5;
 }
 
-/* Animaciones */
-
+/* Animations */
 @keyframes destroy-card {
     0% {
         opacity: 1;

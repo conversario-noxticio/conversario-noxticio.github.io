@@ -118,7 +118,7 @@ function showFinalChoice(cardId, option) {
             const deltaX = targetRect.left + targetRect.width / 2 - rect.left - rect.width / 2;
             const deltaY = targetRect.top + targetRect.height / 2 - rect.top - rect.height / 2;
 
-            clone.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.025)`;
             clone.style.transitionTimingFunction = "ease-in";
 
             setTimeout(() => {
@@ -258,6 +258,15 @@ handIcon.addEventListener("click", () => {
 
 function renderHand() {
     handContainer.innerHTML = "";
+
+    if (hand.length === 0) {
+        const message = document.createElement('div');
+        message.className = 'hand-empty-message';
+        message.textContent = 'No tienes cartas en la mano.';
+        handContainer.appendChild(message);
+        return;
+    }
+
     hand.forEach(({ cardId, optionText }) => {
         const img = document.createElement("img");
         img.src = `images/cards/${cardId}-front.jpg`;
