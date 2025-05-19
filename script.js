@@ -34,10 +34,8 @@ drawCardBtn.addEventListener("click", () => {
     const card = document.createElement("div");
     card.className = "card";
 
-    // Aquí añadimos el evento click para voltear la carta y cargar opciones
     card.addEventListener("click", () => {
         card.classList.toggle("flipped");
-        // Sólo cargar opciones la primera vez que se voltea la carta
         if (!optionsContainer.hasChildNodes()) {
             loadOptions(cardId);
         }
@@ -88,30 +86,148 @@ function showFinalChoice(cardId, option) {
         optionsContainer.appendChild(infoDiv);
     }
 
+    const animateAndCleanupToHand = (callback, targetElement = null) => {
+        const card = cardContainer.querySelector(".card");
+        if (!card) return callback();
+
+        // Deshabilitar botones durante animación
+        disableOptionButtons(true);
+
+        const rect = card.getBoundingClientRect();
+
+        // Detectar si está volteada la carta para elegir la cara visible
+        const isFlipped = card.classList.contains("flipped");
+        const faceSelector = isFlipped ? ".card-back img" : ".card-front img";
+        const img = card.querySelector(faceSelector);
+
+        // Crear clon de la imagen visible en lugar de toda la carta
+        const clone = img.cloneNode(true);
+        clone.style.position = "absolute";
+        clone.style.left = `${rect.left}px`;
+        clone.style.top = `${rect.top}px`;
+        clone.style.width = `${rect.width}px`;
+        clone.style.height = `${rect.height}px`;
+        clone.style.transition = "all 0.4s ease-in-out";
+        clone.style.zIndex = 9999;
+
+        document.body.appendChild(clone);
+        card.style.visibility = "hidden"; // Oculta la carta original
+
+        requestAnimationFrame(() => {
+            const targetRect = targetElement.getBoundingClientRect();
+            const deltaX = targetRect.left + targetRect.width / 2 - rect.left - rect.width / 2;
+            const deltaY = targetRect.top + targetRect.height / 2 - rect.top - rect.height / 2;
+
+            clone.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.1)`;
+            clone.style.transitionTimingFunction = "ease-in";
+
+            setTimeout(() => {
+                clone.style.opacity = 0;
+            }, 300);
+        });
+
+        setTimeout(() => {
+            document.body.removeChild(clone);
+            cardContainer.innerHTML = "";
+            disableOptionButtons(false);
+            callback();
+        }, 400);
+    };
+
+    const animateAndCleanupDestroy = (callback, targetElement = null) => {
+        const card = cardContainer.querySelector(".card");
+        if (!card) return callback();
+
+        disableOptionButtons(true);
+
+        const rect = card.getBoundingClientRect();
+        card.style.visibility = "hidden";
+
+        const leftHalf = document.createElement("div");
+        const rightHalf = document.createElement("div");
+
+        // Detectar si está flipped para elegir la imagen correcta
+        const isFlipped = card.classList.contains("flipped");
+        const bgImage = isFlipped
+            ? `url(images/cards/${cardId}-back.jpg)`
+            : `url(images/cards/${cardId}-front.jpg)`;
+
+        [leftHalf, rightHalf].forEach(half => {
+            half.className = "card-half";
+            half.style.backgroundImage = bgImage;
+            half.style.backgroundSize = `${rect.width}px ${rect.height}px`;
+            half.style.position = "absolute";
+            half.style.top = `${rect.top}px`;
+            half.style.width = `${rect.width / 2}px`;
+            half.style.height = `${rect.height}px`;
+            half.style.zIndex = 9999;
+            half.style.opacity = "1";
+        });
+
+        leftHalf.style.left = `${rect.left}px`;
+        leftHalf.style.backgroundPosition = `left top`;
+
+        rightHalf.style.left = `${rect.left + rect.width / 2}px`;
+        rightHalf.style.backgroundPosition = `right top`;
+
+        document.body.appendChild(leftHalf);
+        document.body.appendChild(rightHalf);
+
+        // Forzar reflujo para asegurar que las transiciones se apliquen
+        void leftHalf.offsetWidth;
+        void rightHalf.offsetWidth;
+
+        requestAnimationFrame(() => {
+            leftHalf.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+            rightHalf.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+
+            leftHalf.style.transform = "rotate(-30deg) translateX(-60px) translateY(-20px)";
+            rightHalf.style.transform = "rotate(30deg) translateX(60px) translateY(-20px)";
+            leftHalf.style.opacity = "0";
+            rightHalf.style.opacity = "0";
+        });
+
+        setTimeout(() => {
+            leftHalf.remove();
+            rightHalf.remove();
+            cardContainer.innerHTML = "";
+            disableOptionButtons(false);
+            callback();
+        }, 500);
+    };
+
     if (option.canStore) {
         const saveBtn = document.createElement("button");
         saveBtn.textContent = "Guardar en mi mano";
         saveBtn.onclick = () => {
-            hand.push({ cardId, optionText: option.text });
-            updateHandIcon();
-            cardContainer.innerHTML = `<p>¡Carta guardada en tu mano!</p>`;
-            optionsContainer.innerHTML = "";
-            updateAfterChoice();
+            animateAndCleanupToHand(() => {
+                hand.push({ cardId, optionText: option.text });
+                updateHandIcon();
+                cardContainer.innerHTML = `<p>¡Carta guardada en tu mano!</p>`;
+                optionsContainer.innerHTML = "";
+                updateAfterChoice();
+            }, handIcon);
         };
         optionsContainer.appendChild(saveBtn);
     }
+
     if (option.canDiscard) {
         const discardBtn = document.createElement("button");
         discardBtn.textContent = "Descartar";
         discardBtn.onclick = () => {
-            //remainingCards.push(cardId);
-            cardContainer.innerHTML = "<p>¡Carta devuelta al mazo!</p>";
-            optionsContainer.innerHTML = "";
-            updateAfterChoice();
+            animateAndCleanupDestroy(() => {
+                cardContainer.innerHTML = "<p>¡Carta descartada!</p>";
+                optionsContainer.innerHTML = "";
+                updateAfterChoice();
+            });
         };
         optionsContainer.appendChild(discardBtn);
     }
+}
 
+function disableOptionButtons(disabled) {
+    const buttons = optionsContainer.querySelectorAll("button");
+    buttons.forEach(btn => btn.disabled = disabled);
 }
 
 function updateHandIcon() {
@@ -170,7 +286,6 @@ function openModal(cardId, optionText) {
     modalCard.appendChild(front);
     modalCard.appendChild(back);
 
-    // Buscar el texto adicional asociado a la opción elegida
     const options = cardOptionsData[cardId] || [];
     const optionObj = options.find(opt => opt.text === optionText);
     const additionalInfo = optionObj ? optionObj.info : "";

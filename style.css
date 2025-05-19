@@ -164,3 +164,46 @@ button {
     max-width: 300px;
     line-height: 1.5;
 }
+
+/* Animaciones */
+
+@keyframes destroy-card {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(90deg);
+    }
+}
+
+@keyframes move-to-hand {
+    0% {
+        opacity: 1;
+        transform: scale(1) translate(0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.2) translate(200px, 200px);
+    }
+}
+
+.animate-destroy {
+    animation: destroy-card 0.8s forwards;
+}
+
+.animate-to-hand {
+    animation: move-to-hand 0.8s forwards;
+    position: absolute;
+    z-index: 2000;
+}
+
+.card-half {
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
