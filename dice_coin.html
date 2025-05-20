@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>dice_coin</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    #dice {
+      width: 150px;
+      height: 150px;
+      border-radius: 5%;
+      border: solid 0.1rem #000000;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+      #dice.tossing {
+          animation: anim_dice_spin 1s ease-in forwards;
+      }
+
+      #dice-wrapper.tossing {
+          animation: anim_dice_jump 1s ease-in forwards;
+      }
+
+    @keyframes anim_dice_spin {
+      0%   { transform: rotateZ(0deg); }
+      100% { transform: rotateZ(720deg); }
+    }
+
+    @keyframes anim_dice_jump {
+      0%   { transform: translateY(0); }
+      55%  { transform: translateY(-150px); }
+      100% { transform: translateY(0); }
+    }
+      
+    #coin {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: solid 0.1rem #000000;
+      background: radial-gradient(circle at center, #ffd700 40%, #b8860b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+      #coin.tossing {
+          animation: anim_coin_spin 1s ease-in-out forwards;
+      }
+
+      #coin-wrapper.tossing {
+          animation: anim_coin_jump 1s ease-in-out forwards;
+      }
+
+    @keyframes anim_coin_spin {
+      0%   { transform: rotateX(0deg); }
+      55%  { transform: rotateX(990deg); }
+      100% { transform: rotateX(1800deg); }
+    }
+
+    @keyframes anim_coin_jump {
+      0%   { transform: translateY(0); }
+      55%  { transform: translateY(-150px); }
+      100% { transform: translateY(0); }
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+  </style>
+</head>
+<body>
+
+    <div style="display: flex; gap: 5rem;">
+        <div>
+
+
+            <div id="dice-wrapper">
+                <div id="dice"></div>
+            </div>
+
+
+            <button onclick="tossDice()">Lanzar Dado</button>
+        </div>
+        
+        <div>
+
+
+            <div id="coin-wrapper">
+                <div id="coin"></div>
+            </div>
+
+
+            <button onclick="tossCoin()">Lanzar Moneda</button>
+        </div>
+
+    </div>
+
+  <script>
+
+    function tossDice() {
+      const diceWrapper = document.getElementById("dice-wrapper");
+      diceWrapper.classList.remove("tossing");
+      const dice = document.getElementById("dice");
+      dice.classList.remove("tossing");
+      dice.textContent = "";
+
+      void diceWrapper.offsetWidth; // Forzar reflujo para reiniciar animación
+      void dice.offsetWidth; // Forzar reflujo para reiniciar animación
+
+      diceWrapper.classList.add("tossing");
+      dice.classList.add("tossing");
+
+      setTimeout(() => {
+        dice.textContent = Math.floor(Math.random() * 6) + 1;
+      }, 1000);
+    }
+
+    function tossCoin() {
+      const coinWrapper = document.getElementById("coin-wrapper");
+      coinWrapper.classList.remove("tossing");
+      const coin = document.getElementById("coin");
+      coin.classList.remove("tossing");
+      coin.textContent = "";
+
+      void coinWrapper.offsetWidth;
+      void coin.offsetWidth;
+
+      coinWrapper.classList.add("tossing");
+      coin.classList.add("tossing");
+
+      setTimeout(() => {
+        coin.textContent = Math.random() > 0.5 ? "Cara" : "Cruz";
+      }, 1000);
+    }
+
+  </script>
+
+</body>
+</html>
