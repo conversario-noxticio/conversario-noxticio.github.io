@@ -394,40 +394,73 @@ function discardFromHand(list, idx, cb) {
     if (idx >= list.length) { if (cb) cb(); return; }
     let type = list[idx];
     let foundIdx = -1;
+
+    // Buscar una carta aleatoria del tipo correspondiente
     if (type === "any") {
-        if (hand.length > 0) foundIdx = 0;
+        if (hand.length > 0) {
+            foundIdx = Math.floor(Math.random() * hand.length);
+        }
     } else {
-        foundIdx = hand.findIndex(c => c.tipo === type);
+        // Buscar todas las cartas de ese tipo
+        let indices = hand
+            .map((c, i) => c.tipo === type ? i : -1)
+            .filter(i => i !== -1);
+        if (indices.length > 0) {
+            let rand = Math.floor(Math.random() * indices.length);
+            foundIdx = indices[rand];
+        }
     }
+
     if (foundIdx === -1) {
+        // No se encontró carta, pasar a la siguiente
         discardFromHand(list, idx + 1, cb);
         return;
     }
-    // Animación de descarte en modal de mano
+
+    // Animación
     let card = hand[foundIdx];
     openHandModal(() => {
         let $thumb = $(`#hand-card-thumb-${card.index}`);
         if ($thumb.length) {
             let pos = $thumb.offset();
-            let $clone = $thumb.clone().css({
-                position: 'fixed', left: pos.left, top: pos.top, zIndex: 3000, width: $thumb.width(), height: $thumb.height()
-            }).appendTo('body');
-            $thumb.css('opacity', 0.3);
-            $clone.addClass('break-left');
+            let width = $thumb.width();
+            let height = $thumb.height();
+
+            let $container = $(`
+                <div class="card-flip-container" style="position:fixed; z-index:3000; left:${pos.left}px; top:${pos.top}px; width:${width}px; height:${height}px;">
+                </div>
+            `).appendTo('body');
+
+            let imgSrc = `images/cards/${card.index}-front.jpg`;
+
+            // Crear mitades izquierda y derecha
+            let $left = $(`
+                <div class="card-face" style="width:50%;height:100%;left:0;position:absolute;overflow:hidden;">
+                    <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:left;">
+                </div>
+            `);
+            let $right = $(`
+                <div class="card-face" style="width:50%;height:100%;left:50%;position:absolute;overflow:hidden;">
+                    <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:right;">
+                </div>
+            `);
+
+            // Añadir animaciones
+            $left.addClass('break-left');
+            $right.addClass('break-right');
+            $container.append($left, $right);
+
+            $thumb.css('visibility', 'hidden');
+
             setTimeout(() => {
-                $clone.remove();
+                $container.remove();
+                $thumb.css('opacity', 1).css('visibility', 'hidden');
                 hand.splice(foundIdx, 1);
                 updateHandIcon();
                 updateHandModal();
                 discardFromHand(list, idx + 1, cb);
-            }, 850);
-        } else {
-            hand.splice(foundIdx, 1);
-            updateHandIcon();
-            updateHandModal();
-            discardFromHand(list, idx + 1, cb);
+            }, 700);
         }
-        $thumb.css('visibility', 'hidden');
     });
 }
 
@@ -492,4 +525,3 @@ function openCardDetailModal(cardObj) {
 function closeCardDetailModal() {
     $('#card-detail-modal').removeClass('active');
 }
-
