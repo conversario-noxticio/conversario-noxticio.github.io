@@ -427,6 +427,7 @@ function discardFromHand(list, idx, cb) {
             updateHandModal();
             discardFromHand(list, idx + 1, cb);
         }
+        $thumb.css('visibility', 'hidden');
     });
 }
 
