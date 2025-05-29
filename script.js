@@ -441,47 +441,58 @@ function discardFromHand(list, idx, cb) {
     // Animación
     let card = hand[foundIdx];
     openHandModal(() => {
-        // TODO: scroll horizontal to card index
         let $thumb = $(`#hand-card-thumb-${card.index}`);
         if ($thumb.length) {
-            let pos = $thumb.offset();
-            let width = $thumb.width();
-            let height = $thumb.height();
+            // Centrar la carta en el scroll horizontal
+            let $handCards = $('#hand-cards');
+            let thumbLeft = $thumb.position().left;
+            let thumbWidth = $thumb.width();
+            let containerWidth = $handCards.width();
+            $handCards.animate({
+                scrollLeft: thumbLeft + thumbWidth / 2 - containerWidth / 2
+            }, 300);
 
-            let $container = $(`
-                <div class="card-flip-container" style="position:fixed; z-index:3000; left:${pos.left}px; top:${pos.top}px; width:${width}px; height:${height}px;">
-                </div>
-            `).appendTo('body');
-
-            let imgSrc = `images/cards/${card.index}-front.jpg`;
-
-            // Crear mitades izquierda y derecha
-            let $left = $(`
-                <div class="card-face" style="width:50%;height:100%;left:0;position:absolute;overflow:hidden;">
-                    <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:left;">
-                </div>
-            `);
-            let $right = $(`
-                <div class="card-face" style="width:50%;height:100%;left:50%;position:absolute;overflow:hidden;">
-                    <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:right;">
-                </div>
-            `);
-
-            // Añadir animaciones
-            $left.addClass('break-left');
-            $right.addClass('break-right');
-            $container.append($left, $right);
-
-            $thumb.css('visibility', 'hidden');
-
+            // Esperar a que termine el scroll antes de la animación
             setTimeout(() => {
-                $container.remove();
-                $thumb.css('opacity', 1).css('visibility', 'hidden');
-                hand.splice(foundIdx, 1);
-                updateHandIcon();
-                updateHandModal();
-                discardFromHand(list, idx + 1, cb);
-            }, 700);
+                let pos = $thumb.offset();
+                let width = $thumb.width();
+                let height = $thumb.height();
+
+                let $container = $(`
+                    <div class="card-flip-container" style="position:fixed; z-index:3000; left:${pos.left}px; top:${pos.top}px; width:${width}px; height:${height}px;">
+                    </div>
+                `).appendTo('body');
+
+                let imgSrc = `images/cards/${card.index}-front.jpg`;
+
+                // Crear mitades izquierda y derecha
+                let $left = $(`
+                    <div class="card-face" style="width:50%;height:100%;left:0;position:absolute;overflow:hidden;">
+                        <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:left;">
+                    </div>
+                `);
+                let $right = $(`
+                    <div class="card-face" style="width:50%;height:100%;left:50%;position:absolute;overflow:hidden;">
+                        <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:right;">
+                    </div>
+                `);
+
+                // Añadir animaciones
+                $left.addClass('break-left');
+                $right.addClass('break-right');
+                $container.append($left, $right);
+
+                $thumb.css('visibility', 'hidden');
+
+                setTimeout(() => {
+                    $container.remove();
+                    $thumb.css('opacity', 1).css('visibility', 'hidden');
+                    hand.splice(foundIdx, 1);
+                    updateHandIcon();
+                    updateHandModal();
+                    discardFromHand(list, idx + 1, cb);
+                }, 700);
+            }, 400);
         }
     });
 }
