@@ -6,6 +6,7 @@ let currentCard = null;  // Objeto carta actual
 let cardFlipped = false; // ¿La carta está volteada?
 let cardOptionsShown = false; // ¿Ya se mostraron las opciones?
 let cardsTotal = 0;
+let isInteractionBlocked = false;
 
 // === INICIALIZACIÓN ===
 $(document).ready(function () {
@@ -41,6 +42,40 @@ $(document).ready(function () {
 });
 
 // === FUNCIONES PRINCIPALES ===
+
+// Bloquea/Desbloquea toda interaccion, botones, cartas, teclas
+function blockInteraction(block) {
+    isInteractionBlocked = block;
+    if (block) {
+        // Bloquear botones, mano, modales, etc.
+        $('button, #hand-container, #close-hand-modal, #close-card-detail-modal').css('pointer-events', 'none').attr('disabled', true);
+        // Bloquear eventos de clic en cartas (flip)
+        $('#main-card-flip, #detail-card-flip').css('pointer-events', 'none');
+        // Bloquear apertura de modales desde cualquier parte
+        $('#hand-modal, #card-detail-modal').off('mousedown').css('pointer-events', 'none');
+        // Bloquear teclas de escape y otros eventos
+        $(document).off('keydown');
+    } else {
+        // Restaurar interacción normal
+        $('button, #hand-container, #close-hand-modal, #close-card-detail-modal').css('pointer-events', 'auto').removeAttr('disabled');
+        // Permitir voltear cartas
+        $('#main-card-flip, #detail-card-flip').css('pointer-events', 'auto');
+        // Restaurar apertura de modales
+        $('#hand-modal').css('pointer-events', 'auto').on('mousedown', function (e) {
+            if (e.target === this) closeHandModal();
+        });
+        $('#card-detail-modal').css('pointer-events', 'auto').on('mousedown', function (e) {
+            if (e.target === this) closeCardDetailModal();
+        });
+        // Restaurar teclas de escape
+        $(document).on('keydown', function (e) {
+            if (e.key === "Escape") {
+                closeHandModal();
+                closeCardDetailModal();
+            }
+        });
+    }
+}
 
 // Actualiza el botón de sacar carta
 function updateDrawButton() {
@@ -438,6 +473,9 @@ function discardFromHand(list, idx, cb) {
         return;
     }
 
+    // Bloquear la interacción
+    blockInteraction(true);
+
     // Animación
     let card = hand[foundIdx];
     openHandModal(() => {
@@ -490,11 +528,13 @@ function discardFromHand(list, idx, cb) {
                     hand.splice(foundIdx, 1);
                     updateHandIcon();
                     updateHandModal();
+                    // Desbloqueamos la interacción y continuamos con la siguiente carta o el callback
+                    blockInteraction(false);
                     discardFromHand(list, idx + 1, cb);
                 }, 700);
             }, 400);
         }
-    });
+    }, true);
 }
 
 // Actualiza el icono de la mano
@@ -504,14 +544,17 @@ function updateHandIcon() {
 
 // === MODAL DE MANO ===
 
-function openHandModal(cb) {
+function openHandModal(cb, forced) {
+    if (isInteractionBlocked && !forced) return;
     $('#hand-modal').addClass('active');
     updateHandModal();
     if (cb) setTimeout(cb, 200);
 }
+
 function closeHandModal() {
     $('#hand-modal').removeClass('active');
 }
+
 function updateHandModal() {
     let $hand = $('#hand-cards');
     $hand.empty();
@@ -534,6 +577,7 @@ function updateHandModal() {
 // === MODAL DETALLE CARTA EN MANO ===
 
 function openCardDetailModal(cardObj) {
+    if (isInteractionBlocked) return;
     $('#card-detail-modal').addClass('active');
     let card = options.find(c => c.index === cardObj.index);
     let flipped = false;
