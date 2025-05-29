@@ -12,6 +12,7 @@ body.night-mode {
     background: var(--night-bg);
     color: var(--night-text);
     min-height: 100vh;
+    padding-bottom: 1rem;
 }
 
 .navbar {

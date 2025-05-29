@@ -275,11 +275,11 @@ function showDiscardButton(card, opt, optIdx) {
 }
 
 function scrollDown() {
-    $('html, body').animate({ scrollTop: $('#final-options-area').offset().top - 50 }, 400);
+    $('html, body').animate({ scrollTop: $('#final-options-area').offset().top - 50 }, 300);
 }
 
 function scrollUp() {
-    $('html, body').animate({ scrollTop: $('#card-area').offset().top - 50 }, 400);
+    $('html, body').animate({ scrollTop: $('#card-area').offset().top - 50 }, 300);
 }
 
 // Lanza dado con animación
@@ -290,17 +290,19 @@ function showDice(opt, card, optIdx) {
         <span id="dice-result" class="fs-4 pl-1"></span>
     `);
     $('#random-area').addClass("mb-4");
-    $('#dice-img').addClass('dice-anim');
     scrollDown();
     setTimeout(() => {
-        $('#dice-img').removeClass('dice-anim');
-        $('#dice-result').text(diceValue);
-        if (opt.dice_values && opt.dice_values.includes(diceValue)) {
-            showStoreButton(card, opt, optIdx);
-        } else {
-            showDiscardButton(card, opt, optIdx);
-        }
-    }, 810);
+        $('#dice-img').addClass('dice-anim');
+        setTimeout(() => {
+            $('#dice-img').removeClass('dice-anim');
+            $('#dice-result').text(diceValue);
+            if (opt.dice_values && opt.dice_values.includes(diceValue)) {
+                showStoreButton(card, opt, optIdx);
+            } else {
+                showDiscardButton(card, opt, optIdx);
+            }
+        }, 810);
+    }, document.documentElement.scrollTop < (document.documentElement.scrollHeight - document.documentElement.clientHeight) ? 400 : 0);
 }
 
 // Lanza moneda con animación
@@ -311,17 +313,19 @@ function showCoin(opt, card, optIdx) {
         <span id="coin-result" class="fs-4 pl-1"></span>
     `);
     $('#random-area').addClass("mb-4");
-    $('#coin-img').addClass('coin-anim');
     scrollDown();
     setTimeout(() => {
-        $('#coin-img').removeClass('coin-anim');
-        $('#coin-result').text(coinVal === "cara" ? "CARA" : "CRUZ");
-        if (opt.coin_value && coinVal === opt.coin_value) {
-            showStoreButton(card, opt, optIdx);
-        } else {
-            showDiscardButton(card, opt, optIdx);
-        }
-    }, 1010);
+        $('#coin-img').addClass('coin-anim');
+        setTimeout(() => {
+            $('#coin-img').removeClass('coin-anim');
+            $('#coin-result').text(coinVal === "cara" ? "CARA" : "CRUZ");
+            if (opt.coin_value && coinVal === opt.coin_value) {
+                showStoreButton(card, opt, optIdx);
+            } else {
+                showDiscardButton(card, opt, optIdx);
+            }
+        }, 1010);
+    }, document.documentElement.scrollTop < (document.documentElement.scrollHeight - document.documentElement.clientHeight) ? 400 : 0);
 }
 
 // Comprueba si tienes las cartas en mano requeridas
