@@ -402,8 +402,8 @@ function animateDiscardCard(card, cb) {
     $container.css({ left: pos.left, top: pos.top });
     let side = cardFlipped ? 'back' : 'front';
     let imgSrc = `images/cards/${card.index}-${side}.jpg`;
-    let $left = $(`<div class="card-face" style="width:50%;height:100%;left:0;position:absolute;overflow:hidden;"><img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:left;"></div>`);
-    let $right = $(`<div class="card-face" style="width:50%;height:100%;left:50%;position:absolute;overflow:hidden;"><img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:right;"></div>`);
+    let $left = $(`<div class="card-face" style="width:50%;height:100%;left:0;position:absolute;overflow:hidden;"><img src="${imgSrc}" style="height:100%;object-fit:cover;object-position:left;"></div>`);
+    let $right = $(`<div class="card-face" style="width:50%;height:100%;left:50%;position:absolute;overflow:hidden;"><img src="${imgSrc}" style="height:100%;object-fit:cover;object-position:right;"></div>`);
     $left.addClass('break-left');
     $right.addClass('break-right');
     $container.append($left, $right);
