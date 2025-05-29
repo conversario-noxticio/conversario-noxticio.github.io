@@ -363,6 +363,23 @@ body.night-mode {
     }
 }
 
+.result-img {
+    transition: left 0.7s cubic-bezier(.7,1.7,.7,1), opacity 0.2s;
+}
+
+.result-value {
+    transition: left 0.7s cubic-bezier(.7,1.7,.7,1), opacity 0.4s;
+}
+
+.result-img.reveal-move {
+    left: 0px !important; /* Mueve la imagen a la izquierda */
+}
+
+.result-value.reveal-move {
+    left: 80px !important; /* Mueve el resultado a la derecha */
+    opacity: 1 !important;
+}
+
 /* Generic */
 
 .pl-1 {

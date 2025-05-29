@@ -286,8 +286,10 @@ function scrollUp() {
 function showDice(opt, card, optIdx) {
     let diceValue = Math.floor(Math.random() * 6) + 1;
     $('#random-area').html(`
-        <img src="images/dice.png" alt="Dado" id="dice-img" style="width:70px;">
-        <span id="dice-result" class="fs-4 pl-1"></span>
+      <div class="result-reveal-container" style="position:relative; display:inline-block; width:120px; height:70px;">
+        <img src="images/dice.png" alt="Dado" id="dice-img" class="result-img" style="width:70px; position:absolute; left:25px; top:0; z-index:2;">
+        <span id="dice-result" class="fs-4 result-value" style="position:absolute; left:25px; top:18px; z-index:1; opacity:0;"></span>
+      </div>
     `);
     $('#random-area').addClass("mb-4");
     scrollDown();
@@ -296,11 +298,18 @@ function showDice(opt, card, optIdx) {
         setTimeout(() => {
             $('#dice-img').removeClass('dice-anim');
             $('#dice-result').text(diceValue);
-            if (opt.dice_values && opt.dice_values.includes(diceValue)) {
-                showStoreButton(card, opt, optIdx);
-            } else {
-                showDiscardButton(card, opt, optIdx);
-            }
+
+            // Animación: resultado sale de detrás del dado
+            $('#dice-img').addClass('reveal-move');
+            $('#dice-result').addClass('reveal-move');
+
+            setTimeout(() => {
+                if (opt.dice_values && opt.dice_values.includes(diceValue)) {
+                    showStoreButton(card, opt, optIdx);
+                } else {
+                    showDiscardButton(card, opt, optIdx);
+                }
+            }, 900);
         }, 810);
     }, document.documentElement.scrollTop < (document.documentElement.scrollHeight - document.documentElement.clientHeight) ? 400 : 0);
 }
@@ -309,8 +318,10 @@ function showDice(opt, card, optIdx) {
 function showCoin(opt, card, optIdx) {
     let coinVal = Math.random() < 0.5 ? "cara" : "cruz";
     $('#random-area').html(`
-        <img src="images/coin.png" alt="Moneda" id="coin-img" style="width:70px;">
-        <span id="coin-result" class="fs-4 pl-1"></span>
+      <div class="result-reveal-container" style="position:relative; display:inline-block; width:120px; height:70px;">
+        <img src="images/coin.png" alt="Moneda" id="coin-img" class="result-img" style="width:70px; position:absolute; left:25px; top:0; z-index:2;">
+        <span id="coin-result" class="fs-4 result-value" style="position:absolute; left:25px; top:18px; z-index:1; opacity:0;"></span>
+      </div>
     `);
     $('#random-area').addClass("mb-4");
     scrollDown();
@@ -319,11 +330,17 @@ function showCoin(opt, card, optIdx) {
         setTimeout(() => {
             $('#coin-img').removeClass('coin-anim');
             $('#coin-result').text(coinVal === "cara" ? "CARA" : "CRUZ");
-            if (opt.coin_value && coinVal === opt.coin_value) {
-                showStoreButton(card, opt, optIdx);
-            } else {
-                showDiscardButton(card, opt, optIdx);
-            }
+
+            $('#coin-img').addClass('reveal-move');
+            $('#coin-result').addClass('reveal-move');
+
+            setTimeout(() => {
+                if (opt.coin_value && coinVal === opt.coin_value) {
+                    showStoreButton(card, opt, optIdx);
+                } else {
+                    showDiscardButton(card, opt, optIdx);
+                }
+            }, 900);
         }, 1010);
     }, document.documentElement.scrollTop < (document.documentElement.scrollHeight - document.documentElement.clientHeight) ? 400 : 0);
 }
