@@ -100,7 +100,6 @@ body.night-mode {
 }
 
 #info-area, #card-detail-info {
-    font-size: 1.1rem;
     white-space: pre-line;
     max-width: 60rem;
     padding: 0 1rem 0 1rem;
@@ -155,23 +154,21 @@ body.night-mode {
 .modal-content {
     background: var(--night-card);
     border-radius: 18px;
-    padding: 30px 22px 22px 22px;
+    padding: 22px 22px 22px 22px;
     min-width: 320px;
     max-width: 90vw;
     max-height: 90vh;
     box-shadow: 0 8px 40px #000a;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .hand-modal-content {
-    width: 480px;
-    max-width: 98vw;
 }
 
 .card-detail-modal-content {
-    width: 340px;
-    max-width: 98vw;
+    max-width: 40rem;
+    align-items: center;
 }
 
 .close-modal {
@@ -195,15 +192,12 @@ body.night-mode {
 .hand-cards-scroll {
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 12px;
-    padding-bottom: 10px;
-    min-height: 130px;
-    max-width: 420px;
+    gap: 1rem;
 }
 
 .hand-card-thumb {
-    width: 90px;
-    height: 130px;
+    width: 10rem;
+    height: 14rem;
     border-radius: 10px;
     border: 2px solid var(--night-card-border);
     background: var(--night-secondary);
@@ -235,8 +229,8 @@ body.night-mode {
     }
 
     .hand-card-thumb {
-        width: 66px;
-        height: 95px;
+        width: 9rem;
+        height: 13rem;
     }
 
     .hand-container {

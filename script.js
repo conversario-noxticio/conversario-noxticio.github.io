@@ -420,6 +420,7 @@ function discardFromHand(list, idx, cb) {
     // Animación
     let card = hand[foundIdx];
     openHandModal(() => {
+        // TODO: scroll horizontal to card index
         let $thumb = $(`#hand-card-thumb-${card.index}`);
         if ($thumb.length) {
             let pos = $thumb.offset();
@@ -519,7 +520,7 @@ function openCardDetailModal(cardObj) {
     });
     // Mostrar opción elegida
     let opt = cardObj.optionIndex !== null ? card.opciones[cardObj.optionIndex] : null;
-    $('#card-detail-option').text(opt ? opt.text : '');
+    $('#card-detail-option').text('Elegiste: ' + (opt ? opt.text : ''));
     $('#card-detail-info').text(opt ? opt.info : '');
 }
 function closeCardDetailModal() {
