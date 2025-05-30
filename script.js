@@ -506,12 +506,12 @@ function discardFromHand(list, idx, cb) {
                 // Crear mitades izquierda y derecha
                 let $left = $(`
                     <div class="card-face" style="width:50%;height:100%;left:0;position:absolute;overflow:hidden;">
-                        <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:left;">
+                        <img src="${imgSrc}" style="height:100%;object-fit:cover;object-position:left;">
                     </div>
                 `);
                 let $right = $(`
                     <div class="card-face" style="width:50%;height:100%;left:50%;position:absolute;overflow:hidden;">
-                        <img src="${imgSrc}" style="width:200%;height:100%;object-fit:cover;object-position:right;">
+                        <img src="${imgSrc}" style="height:100%;object-fit:cover;object-position:right;">
                     </div>
                 `);
 
