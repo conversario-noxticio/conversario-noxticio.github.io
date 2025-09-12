@@ -1,0 +1,472 @@
+﻿:root {
+    --night-bg: #181a1b;
+    --night-card: #232629;
+    --night-card-border: #31363b;
+    --night-primary: #5a8dee;
+    --night-secondary: #222831;
+    --night-text: #e7eaf0;
+    --night-accent: #dcbe45;
+    --night-option: #b19b7c;
+    --night-option-text: #181a1b;
+    --night-correct: #388f54;
+    --night-danger: #cd472f;
+}
+
+body.night-mode {
+    background: var(--night-bg);
+    color: var(--night-text);
+    min-height: 100vh;
+    padding-bottom: 1rem;
+}
+
+.navbar {
+    border-bottom: 2px solid var(--night-card-border);
+}
+
+.logo {
+    height: 32px;
+}
+
+.instagram-icon,
+.trash-icon,
+.hand-icon {
+    max-width: 100%;
+    height: auto;
+}
+
+.instagram-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0.9);
+    transition: filter 0.2s;
+}
+
+.instagram-icon:hover {
+    filter: brightness(1.2) drop-shadow(0 0 8px var(--night-accent));
+}
+
+.main-area {
+    min-height: 80vh;
+    padding: 1rem;
+}
+
+.deck-img {
+    cursor: pointer;
+    position: relative;
+    max-width: 100%;
+    width: 16rem;
+    height: auto;
+    margin-bottom: 1rem;
+    transition: width 0.2s ease;
+}
+
+/* Responsive decks: grid and images */
+@media (max-width: 1100px) {
+    .deck-img {
+        width: 13rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .deck-img {
+        width: 11rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-area {
+        min-height: 65vh;
+    }
+    .deck-img {
+        width: 8.5rem;
+    }
+    .modal-content,
+    .hand-modal-content,
+    .card-detail-modal-content {
+        min-width: 98vw;
+        max-width: 99vw;
+        padding: 18px 8px;
+    }
+    .hand-cards-scroll {
+        max-width: 99vw;
+    }
+    .hand-card-thumb {
+        width: 8rem;
+        height: 12rem;
+    }
+    .hand-icon, .trash-icon {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Card flip */
+.card-flip-container {
+    width: 20rem;
+    max-width: 92vw;
+    height: 28rem;
+}
+
+.card-flip {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.7s cubic-bezier(.4,2,.6,1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card-flip.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.6rem;
+    backface-visibility: hidden;
+    box-shadow: 0 6px 24px 0 #0008;
+    border: 0.1rem solid var(--night-card-border);
+    background: var(--night-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-face.back {
+    transform: rotateY(180deg);
+}
+
+/* Piles and counters */
+.trash-container, .hand-container {
+    position: fixed;
+    bottom: 22px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: var(--night-secondary);
+    border-radius: 28px;
+    padding: 8px 18px;
+    box-shadow: 0 2px 12px #0007;
+    transition: background 0.2s;
+}
+
+.trash-container {
+    left: 22px;
+}
+
+.hand-container {
+    right: 22px;
+}
+
+.trash-container:hover,
+.hand-container:hover {
+    background: #333b44;
+}
+
+.trash-icon, .hand-icon {
+    width: 42px;
+    height: 42px;
+    margin-right: 8px;
+}
+
+.trash-count, .hand-count {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.hand-count {
+    color: var(--night-correct);
+}
+
+.trash-count {
+    color: var(--night-danger);
+}
+
+/* Buttons */
+#save-card-btn {
+    background-color: var(--night-correct);
+    margin-right: 1.5rem;
+}
+
+#discard-card-btn {
+    background-color: var(--night-danger);
+}
+
+#options-area {
+    text-align: center;
+}
+
+#options-area button:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.card-option-btn {
+    background-color: var(--night-option);
+    color: var(--night-option-text);
+}
+
+#info-area, #card-detail-info {
+    text-align: justify;
+}
+
+#card-detail-option {
+    text-align: center;
+}
+
+/* Modals and layout */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(20,22,25,0.85);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s;
+}
+.modal-overlay.active {
+    display: flex;
+}
+.modal-content {
+    background: var(--night-card);
+    border-radius: 18px;
+    padding: 22px;
+    min-width: 320px;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 8px 40px #000a;
+    position: relative;
+    overflow: auto;
+}
+.close-modal {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    transition: color 0.2s;
+}
+.close-modal:hover {
+    color: var(--night-accent);
+}
+.hand-cards-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1rem;
+}
+.hand-card-thumb {
+    width: 10rem;
+    height: 14rem;
+    border-radius: 10px;
+    border: 2px solid var(--night-card-border);
+    background: var(--night-secondary);
+    box-shadow: 0 2px 10px #0006;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+    .hand-card-thumb:hover {
+        transform: scale(1.08) rotate(-2deg);
+        border-color: var(--night-accent);
+    }
+
+#trash-modal-title {
+    color: var(--night-danger);
+}
+
+#hand-modal-title {
+    color: var(--night-correct);
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        font-size: 1rem;
+    }
+
+    .main-area {
+        min-height: 60vh;
+    }
+
+    .modal-content, .hand-modal-content, .card-detail-modal-content {
+        min-width: 90vw;
+    }
+
+    .hand-cards-scroll {
+        max-width: 90vw;
+    }
+
+    .hand-card-thumb {
+        width: 9rem;
+        height: 13rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+
+/* Card anims */
+
+@keyframes saveCard {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0.05);
+        opacity: 0;
+    }
+}
+
+.save-card {
+    animation: saveCard 0.7s forwards;
+    z-index: 999;
+}
+
+#card-clone {
+    transition: top 0.7s ease, left 0.7s ease;
+}
+
+
+/* Anim break */
+
+@keyframes breakLeft {
+    0% {
+        transform: rotate(0) translate(0,0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(-22deg) translate(-5rem,-1rem) scale(0.7);
+        opacity: 0;
+    }
+}
+
+@keyframes breakRight {
+    0% {
+        transform: rotate(0) translate(0,0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(22deg) translate(5rem,1rem) scale(0.7);
+        opacity: 0;
+    }
+}
+
+.break-left {
+    animation: breakLeft 0.6s forwards;
+}
+
+.break-right {
+    animation: breakRight 0.6s forwards;
+}
+
+
+/* Dice and coin */
+
+.result-reveal-container {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 1.5rem;  
+    width: 100%;
+    text-align: center;
+}
+
+.dice-anim {
+    animation: diceRoll 0.8s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes diceRoll {
+    0% {
+        transform: rotate(0) scale(1);
+    }
+
+    50% {
+        transform: rotate(480deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(720deg) scale(1);
+    }
+}
+
+.coin-anim {
+    animation: coinFlip 1s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes coinFlip {
+    0% {
+        transform: rotateY(0) scale(1);
+    }
+
+    50% {
+        transform: rotateY(540deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotateY(1080deg) scale(1);
+    }
+}
+
+.result-img {
+    transition: left 0.7s cubic-bezier(.7,1.7,.7,1), opacity 0.2s;
+}
+
+.result-value {
+    transition: left 0.7s cubic-bezier(.7,1.7,.7,1), opacity 0.4s;
+}
+
+.result-img.reveal-move {
+    left: 0px !important; /* Move result to left */
+}
+
+.result-value.reveal-move {
+    left: 80px !important; /* Move result to right */
+    opacity: 1 !important;
+}
+
+
+/* Generic */
+
+.pl-1 {
+    padding-left: 1rem;
+}

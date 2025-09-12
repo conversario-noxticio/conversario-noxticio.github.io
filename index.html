@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversario Noxticio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon-apple.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="night-mode">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark px-3 py-2 border-bottom">
+        <span class="navbar-brand mb-0 h1 d-flex align-items-center">
+            <img src="images/logo_nox_white.png" alt="Logo" class="logo img-fluid">
+        </span>
+        <a href="https://www.instagram.com/conversariopintojo/" target="_blank" class="ms-auto">
+            <img src="images/instagram.png" alt="Instagram" class="instagram-icon img-fluid">
+        </a>
+    </nav>
+
+    <!-- Main Area -->
+    <div class="container-fluid d-flex flex-column align-items-center main-area py-4">
+        <div class="row w-100 justify-content-center">
+            <div class="col-12 col-md-5 d-flex justify-content-center">
+                <img src="images/icon/cards-nox.png" alt="Mazo NOX" id="deck-nox" class="deck-img img-fluid">
+            </div>
+            <div class="col-12 col-md-5 d-flex justify-content-center">
+                <img src="images/icon/cards-story.png" alt="Mazo Historia" id="deck-story" class="deck-img img-fluid">
+            </div>
+        </div>
+        <div id="card-area" class="my-2"></div>
+        <div id="options-area" class="my-2"></div>
+        <div id="info-area" class="my-2"></div>
+        <div id="random-area" class="my-2"></div>
+        <div id="final-options-area" class="my-2"></div>
+    </div>
+
+    <!-- Trash and Hand -->
+    <div id="trash-container" class="trash-container shadow">
+        <img src="images/icon/trash.png" alt="Tu mano" id="trash-icon" class="trash-icon img-fluid">
+        <span id="trash-count" class="trash-count">0</span>
+    </div>
+    <div id="hand-container" class="hand-container shadow">
+        <img src="images/icon/hand.png" alt="Tu mano" id="hand-icon" class="hand-icon img-fluid">
+        <span id="hand-count" class="hand-count">0</span>
+    </div>
+
+    <!-- Modals (hand, trash, card detail) -->
+    <div id="trash-modal" class="modal-overlay" tabindex="-1">
+        <div class="modal-content hand-modal-content">
+            <button class="close-modal" id="close-trash-modal">&times;</button>
+            <h5 id="trash-modal-title" class="mb-4">Cartas descartadas</h5>
+            <div id="trash-cards" class="hand-cards-scroll d-flex flex-row"></div>
+            <div id="trash-empty" class="text-center mt-4 mb-5 d-none">No hay ninguna carta</div>
+        </div>
+    </div>
+    <div id="hand-modal" class="modal-overlay" tabindex="-1">
+        <div class="modal-content hand-modal-content">
+            <button class="close-modal" id="close-hand-modal">&times;</button>
+            <h5 id="hand-modal-title" class="mb-4">Tu mano</h5>
+            <div id="hand-cards" class="hand-cards-scroll d-flex flex-row"></div>
+            <div id="hand-empty" class="text-center mt-4 mb-5 d-none">No hay ninguna carta</div>
+        </div>
+    </div>
+    <div id="card-detail-modal" class="modal-overlay" tabindex="-1">
+        <div class="modal-content card-detail-modal-content">
+            <button class="close-modal" id="close-card-detail-modal">&times;</button>
+            <div id="card-detail-area"></div>
+            <div id="card-detail-option" class="mt-4"></div>
+            <div id="card-detail-info" class="mt-3"></div>
+            <div id="card-detail-options" class="mt-3"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="cards.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
