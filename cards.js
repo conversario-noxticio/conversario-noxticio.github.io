@@ -7,6 +7,15 @@ const CardType = {
     Historia: 'historia'
 };
 
+const ObtainingMethod = {
+    FromNox: 'Obtenida directamente del mazo NOX',
+    FromStory: 'Obtenida directamente del mazo de historia',
+    FromPlayToHand: 'Obtenida jugándola del mazo NOX',
+    FromPlayToTrash: 'Descartada jugándola del mazo NOX',
+    FromHandToTrash: 'Descartada desde tu mano',
+    FromTrashToHand: 'Recuperada de los descartes',
+};
+
 const cards = [
     {
         index: 1,

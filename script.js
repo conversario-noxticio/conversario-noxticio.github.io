@@ -165,14 +165,18 @@ function handleOptionOutcome(card, opt, optIdx) {
 }
 
 function showStoreDiscardButtons(card, opt, optIdx) {
-    createActionButton("Guardar", "save-card-btn", "#hand-container", addToHand, card, optIdx);
-    createActionButton("Descartar", "discard-card-btn", "#trash-container", addToTrash, card, optIdx);
+    createActionButton("#final-options-area", "Guardar en tu mano", "save-card-btn", "#hand-container", card, optIdx, () => {
+        addToHand(card, optIdx, ObtainingMethod.FromPlayToHand);
+    });
+    createActionButton("#final-options-area", "Descartar", "discard-card-btn", "#trash-container", card, optIdx, () => {
+        addToTrash(card, optIdx, ObtainingMethod.FromPlayToTrash);
+    });
 }
 
-function createActionButton(label, btnId, targetContainer, action, card, optIdx) {
-    let finalOptionsArea = $('#final-options-area');
-    finalOptionsArea.append(`<button class="btn" id="${btnId}">${label}</button>`);
-    finalOptionsArea.addClass("mb-4");
+function createActionButton(areaId, label, btnId, targetContainer, card, optIdx, action) {
+    let area = $(areaId);
+    area.append(`<button class="btn" id="${btnId}">${label}</button>`);
+    area.addClass("mb-4");
     scrollDown();
 
     $(`#${btnId}`).off('click').on('click', function () {
@@ -180,7 +184,7 @@ function createActionButton(label, btnId, targetContainer, action, card, optIdx)
         scrollUp();
         setTimeout(() => {
             animateCardMovement(card, targetContainer, () => {
-                action(card, optIdx);
+                action();
                 resetAreas();
                 setInteractionBlocked(false);
             });
@@ -200,21 +204,30 @@ function updatePileCount(selector, pile) {
     $(selector).text(pile.length);
 }
 
-function addToPile(pile, card, chosenOptionIndex, counterSelector) {
+function addToPile(pile, card, chosenOptionIndex, obtainingMethod, counterSelector) {
     pile.push({
         index: card.index,
         type: card.type,
-        chosenOptionIndex: (typeof chosenOptionIndex === "number" ? chosenOptionIndex : null)
+        chosenOptionIndex: (typeof chosenOptionIndex === "number" ? chosenOptionIndex : null),
+        obtainingMethod: obtainingMethod
     });
     updatePileCount(counterSelector, pile);
 }
 
-function addToHand(card, chosenOptionIndex) {
-    addToPile(hand, card, chosenOptionIndex, "#hand-count");
+function removeFromPile(pile, card, counterSelector) {
+    const index = pile.findIndex(c => c.index === card.index);
+    if (index >= 0) {
+        pile.splice(index, 1);
+        updatePileCount(counterSelector, pile);
+    }
 }
 
-function addToTrash(card, chosenOptionIndex) {
-    addToPile(trash, card, chosenOptionIndex, "#trash-count");
+function addToHand(card, chosenOptionIndex, obtainingMethod) {
+    addToPile(hand, card, chosenOptionIndex, obtainingMethod, "#hand-count");
+}
+
+function addToTrash(card, chosenOptionIndex, obtainingMethod) {
+    addToPile(trash, card, chosenOptionIndex, obtainingMethod, "#trash-count");
 }
 
 function renderPile(pile, modalSelector, containerSelector, emptySelector) {
@@ -266,13 +279,35 @@ function openCardDetailModal(cardObj) {
         $(this).toggleClass('flipped');
     });
 
-    let opt = cardObj.chosenOptionIndex !== null ? card.options[cardObj.chosenOptionIndex] : null;
-    $('#card-detail-option').text('Elegiste: ' + (opt ? opt.text : ''));
-    $('#card-detail-info').text(opt ? opt.info : '');
+    $('#card-detail-obtaining-method').text(cardObj.obtainingMethod);
+
+    let optIndex = cardObj.chosenOptionIndex;
+    if (cardObj.obtainingMethod === ObtainingMethod.FromPlayToHand || cardObj.obtainingMethod === ObtainingMethod.FromPlayToTrash) {
+        let opt = optIndex !== null ? card.options[optIndex] : null;
+        $('#card-detail-option').text('Elegiste: ' + (opt ? opt.text : ''));
+        $('#card-detail-info').text(opt ? opt.info : '');
+    }
+
+    if (hand.find(c => c.index === cardObj.index)) {
+        createActionButton("#card-detail-options", "Descartar", "discard-card-btn", "#trash-container", card, optIndex, () => {
+            addToTrash(card, optIndex, ObtainingMethod.FromHandToTrash);
+            removeFromPile(hand, card,"#hand-count")
+            closeCardDetailModal();
+            renderPile(hand, '#hand-modal', '#hand-cards', '#hand-empty');
+        });
+    } else if (trash.find(c => c.index === cardObj.index)) {
+        createActionButton("#card-detail-options", "Guardar en tu mano", "save-card-btn", "#hand-container", card, optIndex, () => {
+            addToHand(card, optIndex, ObtainingMethod.FromTrashToHand);
+            removeFromPile(trash, card,"#trash-count")
+            closeCardDetailModal();
+            renderPile(trash, '#trash-modal', '#trash-cards', '#trash-empty');
+        });
+    }
 }
 
 function closeCardDetailModal() {
     $('#card-detail-modal').removeClass('active');
+    $('#card-detail-area, #card-detail-option, #card-detail-info, #card-detail-options').empty();
 }
 
 

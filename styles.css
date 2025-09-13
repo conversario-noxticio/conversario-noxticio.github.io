@@ -195,8 +195,10 @@ body.night-mode {
 /* Buttons */
 #save-card-btn {
     background-color: var(--night-correct);
-    margin-right: 1.5rem;
 }
+#save-card-btn:not(:last-child) {
+    margin-right: 1.5rem;
+ }
 
 #discard-card-btn {
     background-color: var(--night-danger);
@@ -219,8 +221,14 @@ body.night-mode {
     text-align: justify;
 }
 
-#card-detail-option {
+#card-detail-area {
+    display: flex;
+    justify-content: center;
+}
+
+#card-detail-obtaining-method:not(:empty), #card-detail-option:not(:empty), #card-detail-info:not(:empty), #card-detail-options:not(:empty) {
     text-align: center;
+    margin-top: 1.5rem;
 }
 
 /* Modals and layout */
