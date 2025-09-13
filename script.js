@@ -165,39 +165,22 @@ function handleOptionOutcome(card, opt, optIdx) {
 }
 
 function showStoreDiscardButtons(card, opt, optIdx) {
-    showStoreButton(card, opt, optIdx);
-    showDiscardButton(card, opt, optIdx);
+    createActionButton("Guardar", "save-card-btn", "#hand-container", addToHand, card, optIdx);
+    createActionButton("Descartar", "discard-card-btn", "#trash-container", addToTrash, card, optIdx);
 }
 
-function showStoreButton(card, opt, optIdx) {
+function createActionButton(label, btnId, targetContainer, action, card, optIdx) {
     let finalOptionsArea = $('#final-options-area');
-    finalOptionsArea.append(`<button class="btn" id="save-card-btn">Guardar</button>`);
+    finalOptionsArea.append(`<button class="btn" id="${btnId}">${label}</button>`);
     finalOptionsArea.addClass("mb-4");
     scrollDown();
-    $('#save-card-btn').off('click').on('click', function () {
+
+    $(`#${btnId}`).off('click').on('click', function () {
         setInteractionBlocked(true);
         scrollUp();
         setTimeout(() => {
-            animateCardMovement(card, '#hand-container', () => {
-                addToHand(card, optIdx);
-                resetAreas();
-                setInteractionBlocked(false);
-            });
-        }, document.documentElement.scrollTop > 0 ? 700 : 0);
-    });
-}
-
-function showDiscardButton(card, opt, optIdx) {
-    let finalOptionsArea = $('#final-options-area');
-    finalOptionsArea.append(`<button class="btn" id="discard-card-btn">Descartar</button>`);
-    finalOptionsArea.addClass("mb-4");
-    scrollDown();
-    $('#discard-card-btn').off('click').on('click', function () {
-        setInteractionBlocked(true);
-        scrollUp();
-        setTimeout(() => {
-            animateCardMovement(card, '#trash-container', () => {
-                addToTrash(card, optIdx);
+            animateCardMovement(card, targetContainer, () => {
+                action(card, optIdx);
                 resetAreas();
                 setInteractionBlocked(false);
             });
