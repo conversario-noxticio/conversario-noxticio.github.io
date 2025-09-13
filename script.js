@@ -27,29 +27,19 @@ function bindEvents() {
     $('#deck-nox').off('click').on('click', () => drawCardRandom(deckNox));
     $('#deck-story').off('click').on('click', () => drawCardRandom(deckStory));
 
-    $('#hand-container').off('click').on('click', () => renderPile(hand, '#hand-modal', '#hand-cards', '#hand-empty'));
-    $('#trash-container').off('click').on('click', () => renderPile(trash, '#trash-modal', '#trash-cards', '#trash-empty'));
+    $('#hand-container').off('click').on('click', () => renderPileHand());
+    $('#trash-container').off('click').on('click', () => renderPileTrash());
 
-    $('#close-hand-modal').off('click').on('click', closeHandModal);
-    $('#close-trash-modal').off('click').on('click', closeTrashModal);
-
+    $('#close-deck-modal').off('click').on('click', closeDeckModal);
     $('#close-card-detail-modal').off('click').on('click', closeCardDetailModal);
 
     // Close modals clicking outside
-    $('#hand-modal').on('mousedown', function (e) {
-        if (e.target === this) closeHandModal();
-    });
-    $('#trash-modal').on('mousedown', function (e) {
-        if (e.target === this) closeTrashModal();
-    });
-    $('#card-detail-modal').on('mousedown', function (e) {
-        if (e.target === this) closeCardDetailModal();
-    });
+    $('#deck-modal').on('mousedown', e => { if (e.target === e.currentTarget) closeDeckModal(); });
+    $('#card-detail-modal').on('mousedown', e => { if (e.target === e.currentTarget) closeCardDetailModal(); });
 
-    $(document).off('keydown').on('keydown', function (e) {
+    $(document).off('keydown').on('keydown', e => {
         if (e.key === "Escape") {
-            closeHandModal();
-            closeTrashModal();
+            closeDeckModal();
             closeCardDetailModal();
         }
     });
@@ -59,9 +49,9 @@ function bindEvents() {
 // Interaction ---------------------------------------------------------------------------------------------------------
 
 function setInteractionBlocked(isBlocked) {
-    const buttons = $('#deck-nox, #deck-story, #hand-container, #close-hand-modal, #trash-container, #close-trash-modal, #close-card-detail-modal, #save-card-btn, #discard-card-btn');
+    const buttons = $('#deck-nox, #deck-story, #hand-container, #trash-container, #close-deck-modal, #close-card-detail-modal, #save-card-btn, #discard-card-btn');
     const flip = $('#main-card-flip, #detail-card-flip');
-    const modals = $('#hand-modal, #trash-modal, #card-detail-modal');
+    const modals = $('#deck-modal, #card-detail-modal');
     if (isBlocked) {
         buttons.css('pointer-events', 'none').attr('disabled', true);
         flip.css('pointer-events', 'none');
@@ -81,9 +71,7 @@ function setInteractionBlocked(isBlocked) {
 function drawCardRandom(deck) {
     if (deck.length === 0) return;
     $('#deck-nox, #deck-story').hide();
-    const elements = $('#card-area, #options-area, #info-area, #random-area, #final-options-area');
-    elements.empty();
-    elements.removeClass("mb-4");
+    $('#card-area, #options-area, #info-area, #random-area, #final-options-area').empty().removeClass("mb-4");
 
     isCardFlipped = false;
     areCardOptionsShown = false;
@@ -230,33 +218,41 @@ function addToTrash(card, chosenOptionIndex, obtainingMethod) {
     addToPile(trash, card, chosenOptionIndex, obtainingMethod, "#trash-count");
 }
 
-function renderPile(pile, modalSelector, containerSelector, emptySelector) {
-    $(modalSelector).addClass('active');
-    let $container = $(containerSelector).empty();
+function renderPile(pile, title, titleClass) {
+    $('#deck-modal').addClass('active');
+    let titleElement = $('#deck-modal-title');
+    titleElement.text(title);
+    titleElement.removeClass();
+    titleElement.addClass("mb-4 " + titleClass);
+
+    let $container = $('#deck-modal-cards').empty();
     if (pile.length === 0) {
-        $(emptySelector).removeClass('d-none');
+        $('#deck-modal-empty').text("No hay ninguna carta").removeClass('d-none');
     } else {
-        $(emptySelector).addClass('d-none');
+        $('#deck-modal-empty').addClass('d-none');
         pile.forEach((c, i) => {
             $container.append(`
                 <img src="images/cards/${c.index}-front.jpg" class="hand-card-thumb me-2" data-idx="${i}" alt="Carta ${c.index}">
             `);
         });
-        $(`${containerSelector} .hand-card-thumb`).off('click').on('click', function () {
+        $('#deck-modal-cards .hand-card-thumb').off('click').on('click', function () {
             let idx = Number($(this).data('idx'));
             openCardDetailModal(pile[idx]);
         });
     }
 }
 
-function closeHandModal() {
-    $('#hand-modal').removeClass('active');
+function closeDeckModal() {
+    $('#deck-modal').removeClass('active');
 }
 
-function closeTrashModal() {
-    $('#trash-modal').removeClass('active');
+function renderPileHand() {
+    renderPile(hand, "Tu mano", "hand-modal-title");
 }
 
+function renderPileTrash() {
+    renderPile(trash, "Cartas descartadas", "trash-modal-title");
+}
 
 // Card detail ---------------------------------------------------------------------------------------------------------
 
@@ -291,16 +287,16 @@ function openCardDetailModal(cardObj) {
     if (hand.find(c => c.index === cardObj.index)) {
         createActionButton("#card-detail-options", "Descartar", "discard-card-btn", "#trash-container", card, optIndex, () => {
             addToTrash(card, optIndex, ObtainingMethod.FromHandToTrash);
-            removeFromPile(hand, card,"#hand-count")
+            removeFromPile(hand, card,"#hand-count");
             closeCardDetailModal();
-            renderPile(hand, '#hand-modal', '#hand-cards', '#hand-empty');
+            renderPileHand();
         });
     } else if (trash.find(c => c.index === cardObj.index)) {
         createActionButton("#card-detail-options", "Guardar en tu mano", "save-card-btn", "#hand-container", card, optIndex, () => {
             addToHand(card, optIndex, ObtainingMethod.FromTrashToHand);
-            removeFromPile(trash, card,"#trash-count")
+            removeFromPile(trash, card,"#trash-count");
             closeCardDetailModal();
-            renderPile(trash, '#trash-modal', '#trash-cards', '#trash-empty');
+            renderPileTrash();
         });
     }
 }

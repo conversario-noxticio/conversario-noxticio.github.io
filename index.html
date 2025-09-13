@@ -50,23 +50,17 @@
         <span id="hand-count" class="hand-count">0</span>
     </div>
 
-    <!-- Modals (hand, trash, card detail) -->
-    <div id="trash-modal" class="modal-overlay" tabindex="-1">
+    <!-- Deck Modal -->
+    <div id="deck-modal" class="modal-overlay" tabindex="-1">
         <div class="modal-content hand-modal-content">
-            <button class="close-modal" id="close-trash-modal">&times;</button>
-            <h5 id="trash-modal-title" class="mb-4">Cartas descartadas</h5>
-            <div id="trash-cards" class="hand-cards-scroll d-flex flex-row"></div>
-            <div id="trash-empty" class="text-center mt-4 mb-5 d-none">No hay ninguna carta</div>
+            <button id="close-deck-modal" class="close-modal">&times;</button>
+            <h5 id="deck-modal-title"></h5>
+            <div id="deck-modal-cards" class="hand-cards-scroll d-flex flex-row"></div>
+            <div id="deck-modal-empty" class="text-center mt-4 mb-5 d-none"></div>
         </div>
     </div>
-    <div id="hand-modal" class="modal-overlay" tabindex="-1">
-        <div class="modal-content hand-modal-content">
-            <button class="close-modal" id="close-hand-modal">&times;</button>
-            <h5 id="hand-modal-title" class="mb-4">Tu mano</h5>
-            <div id="hand-cards" class="hand-cards-scroll d-flex flex-row"></div>
-            <div id="hand-empty" class="text-center mt-4 mb-5 d-none">No hay ninguna carta</div>
-        </div>
-    </div>
+
+    <!-- Detail Card Modal -->
     <div id="card-detail-modal" class="modal-overlay" tabindex="-1">
         <div class="modal-content card-detail-modal-content">
             <button class="close-modal" id="close-card-detail-modal">&times;</button>

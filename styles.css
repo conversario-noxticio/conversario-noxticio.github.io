@@ -81,7 +81,6 @@ body.night-mode {
         width: 8.5rem;
     }
     .modal-content,
-    .hand-modal-content,
     .card-detail-modal-content {
         min-width: 98vw;
         max-width: 99vw;
@@ -293,11 +292,11 @@ body.night-mode {
         border-color: var(--night-accent);
     }
 
-#trash-modal-title {
+.trash-modal-title {
     color: var(--night-danger);
 }
 
-#hand-modal-title {
+.hand-modal-title {
     color: var(--night-correct);
 }
 
@@ -310,7 +309,7 @@ body.night-mode {
         min-height: 60vh;
     }
 
-    .modal-content, .hand-modal-content, .card-detail-modal-content {
+    .modal-content, .card-detail-modal-content {
         min-width: 90vw;
     }
 
