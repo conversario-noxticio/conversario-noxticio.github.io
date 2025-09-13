@@ -12,6 +12,10 @@
     --night-danger: #cd472f;
 }
 
+body {
+     font-family: 'Texturina', sans-serif;
+}
+
 body.night-mode {
     background: var(--night-bg);
     color: var(--night-text);
