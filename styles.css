@@ -202,6 +202,9 @@ body.night-mode {
 .discard-card-btn {
     background-color: var(--night-danger);
 }
+.discard-card-btn:not(:last-child) {
+    margin-right: 1.5rem;
+}
 
 .card-option-btn {
     background-color: var(--night-option);

@@ -14,8 +14,8 @@ let areCardOptionsShown = false;
 // Init ----------------------------------------------------------------------------------------------------------------
 
 $(document).ready(function () {
-    deckNox = cards.filter(opt => opt.type !== CardType.Historia);
-    deckStory = cards.filter(opt => opt.type === CardType.Historia);
+    deckNox = cards.filter(c => c.type !== CardType.Historia);
+    deckStory = cards.filter(c => c.type === CardType.Historia);
 
     updatePileCount("#hand-count", hand);
     updatePileCount("#trash-count", trash);
@@ -66,10 +66,11 @@ function setInteractionBlocked(isBlocked) {
 }
 
 
-// Deck NOX ------------------------------------------------------------------------------------------------------------
+// Decks ---------------------------------------------------------------------------------------------------------------
 
 function drawCardRandom(deck) {
     if (deck.length === 0) return;
+
     $('#deck-nox, #deck-story').hide();
     $('#card-area, #options-area, #info-area, #random-area, #final-options-area').empty().removeClass("mb-4");
 
@@ -81,6 +82,19 @@ function drawCardRandom(deck) {
     deck.splice(idx, 1);
 
     showCard(currentCard, false);
+}
+
+function discardCardRandom(deck, type, obtainingMethod) {
+    if (deck.length === 0) return;
+
+    let deckFiltered = deck.filter(c => (type === "" || c.type === type));
+    if (deckFiltered.length === 0) return;
+
+    const cardFilteredIndex = Math.floor(Math.random() * deckFiltered.length);
+    const cardId = deckFiltered[cardFilteredIndex].index;
+    const deckIndex = deck.findIndex(c => c.index === cardId);
+    addToTrash(deck[deckIndex], null, obtainingMethod);
+    deck.splice(deckIndex, 1);
 }
 
 
@@ -271,11 +285,12 @@ function renderPileStory() {
 function renderPileHand() {
     renderPile(hand, "Tu mano", "hand-modal-title");
     if (hand.length > 0) {
-        createActionButton("#deck-modal-options", "Descartar aleatoria", "pile-discard-random-btn", "discard-card-btn", "#trash-container", null, () => {
-            // discard random
-            renderPile(hand, "Tu mano", "hand-modal-title");
+        ["", CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
+            createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn", "#trash-container", null, () => {
+                discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
+                renderPileHand();
+            });
         });
-        // discard random by types
     }
 }
 
