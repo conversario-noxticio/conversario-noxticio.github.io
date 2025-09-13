@@ -1,15 +1,16 @@
 ﻿:root {
-    --night-bg: #181a1b;
-    --night-card: #232629;
-    --night-card-border: #31363b;
+    --night-bg-grad0: #181a1b;
+    --night-bg-grad1: #242432;
     --night-primary: #5a8dee;
-    --night-secondary: #222831;
-    --night-text: #e7eaf0;
-    --night-accent: #dcbe45;
-    --night-option: #b19b7c;
-    --night-option-text: #181a1b;
-    --night-correct: #388f54;
-    --night-danger: #cd472f;
+    --night-text: #f5edf8;
+    --night-accent: #8f8797;
+    --night-hover: #00000026;
+    --night-title-neutral: #ddd3a4;
+    --night-title-correct: #388f54;
+    --night-title-danger: #cd472f;
+    --night-bkg-neutral: #806a54;
+    --night-bkg-correct: #2e7044;
+    --night-bkg-danger: #853624;
 }
 
 body {
@@ -17,14 +18,15 @@ body {
 }
 
 body.night-mode {
-    background: var(--night-bg);
+    background: linear-gradient(to bottom, var(--night-bg-grad0) 10%, var(--night-bg-grad1) 100%);
     color: var(--night-text);
     min-height: 100vh;
     padding-bottom: 1rem;
 }
 
 .navbar {
-    border-bottom: 2px solid var(--night-card-border);
+    background: var(--night-bg-grad0) !important;
+    border-bottom: none !important;
 }
 
 .logo {
@@ -51,7 +53,24 @@ body.night-mode {
 
 .main-area {
     min-height: 80vh;
-    padding: 1rem;
+    padding: 10rem;
+}
+@media (max-width: 1100px) {
+    .main-area {
+        padding: 5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-area {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-area {
+        padding: 2rem;
+    }
 }
 
 .deck-img {
@@ -78,9 +97,6 @@ body.night-mode {
 }
 
 @media (max-width: 600px) {
-    .main-area {
-        min-height: 65vh;
-    }
     .deck-img {
         width: 8.5rem;
     }
@@ -130,8 +146,7 @@ body.night-mode {
     border-radius: 0.6rem;
     backface-visibility: hidden;
     box-shadow: 0 6px 24px 0 #0008;
-    border: 0.1rem solid var(--night-card-border);
-    background: var(--night-card);
+    background: var(--night-bg-grad1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +171,7 @@ body.night-mode {
     display: flex;
     align-items: center;
     cursor: pointer;
-    background: var(--night-secondary);
+    background: var(--night-bg-grad0);
     border-radius: 28px;
     padding: 8px 18px;
     box-shadow: 0 2px 12px #0007;
@@ -177,8 +192,8 @@ body.night-mode {
 }
 
 .trash-icon, .hand-icon {
-    width: 42px;
-    height: 42px;
+    width: 2.5rem;
+    height: 2.5rem;
     margin-right: 8px;
 }
 
@@ -188,39 +203,46 @@ body.night-mode {
 }
 
 .hand-count {
-    color: var(--night-correct);
+    color: var(--night-title-correct);
 }
 
 .trash-count {
-    color: var(--night-danger);
+    color: var(--night-title-danger);
 }
 
 /* Buttons */
 .save-card-btn {
-    background-color: var(--night-correct);
+    background-color: var(--night-bkg-correct);
+}
+.save-card-btn:hover {
+    background-color: color-mix(in srgb, var(--night-bkg-correct) 50%, var(--night-hover) 50%);
 }
 .save-card-btn:not(:last-child) {
     margin-right: 1.5rem;
  }
 
 .discard-card-btn {
-    background-color: var(--night-danger);
+    background-color: var(--night-bkg-danger);
+}
+.discard-card-btn:hover {
+    background-color: color-mix(in srgb, var(--night-bkg-danger) 50%, var(--night-hover) 50%);
 }
 .discard-card-btn:not(:last-child) {
     margin-right: 1.5rem;
 }
 
 .card-option-btn {
-    background-color: var(--night-option);
-    color: var(--night-option-text);
+    background-color: var(--night-bkg-neutral);
+}
+.card-option-btn:hover {
+    background-color: color-mix(in srgb, var(--night-bkg-neutral) 50%, var(--night-hover) 50%);
+}
+.card-option-btn:not(:last-child) {
+    margin-right: 1.5rem;
 }
 
 #options-area {
     text-align: center;
-}
-
-#options-area button:not(:last-child) {
-    margin-right: 1rem;
 }
 
 #info-area, #card-detail-info {
@@ -252,7 +274,7 @@ body.night-mode {
     display: flex;
 }
 .modal-content {
-    background: var(--night-card);
+    background: var(--night-bg-grad1);
     border-radius: 18px;
     padding: 22px;
     min-width: 320px;
@@ -288,32 +310,26 @@ body.night-mode {
     width: 10rem;
     height: 14rem;
     border-radius: 10px;
-    border: 2px solid var(--night-card-border);
-    background: var(--night-secondary);
     box-shadow: 0 2px 10px #0006;
     cursor: pointer;
     transition: transform 0.15s;
+    margin-bottom: 1.5rem;
+}
+.hand-card-thumb:hover {
+    transform: scale(1.08) rotate(-2deg);
+    border-color: var(--night-accent);
 }
 
-    .hand-card-thumb:hover {
-        transform: scale(1.08) rotate(-2deg);
-        border-color: var(--night-accent);
-    }
-
-.nox-modal-title {
-    color: var(--night-accent);
-}
-
-.story-modal-title {
-    color: var(--night-accent);
+.nox-modal-title, .story-modal-title {
+    color: var(--night-title-neutral);
 }
 
 .hand-modal-title {
-    color: var(--night-correct);
+    color: var(--night-title-correct);
 }
 
 .trash-modal-title {
-    color: var(--night-danger);
+    color: var(--night-title-danger);
 }
 
 #deck-modal-options {
@@ -325,14 +341,6 @@ body.night-mode {
 }
 
 @media (max-width: 600px) {
-    .navbar {
-        font-size: 1rem;
-    }
-
-    .main-area {
-        min-height: 60vh;
-    }
-
     .modal-content, .card-detail-modal-content {
         min-width: 90vw;
     }

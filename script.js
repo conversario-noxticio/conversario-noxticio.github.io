@@ -127,7 +127,7 @@ function showCard(card, flipped) {
 function showCardOptions(card) {
     let html = '';
     card.options.forEach((opt, i) => {
-        html += `<button class="btn card-option-btn" data-idx="${i}">${opt.text}</button>`;
+        html += `<button class="btn card-option-btn mb-3" data-idx="${i}">${opt.text}</button>`;
     });
     $('#options-area').html(html).addClass("mb-4");
     $('#card-area').addClass("mb-4");
@@ -286,7 +286,7 @@ function renderPileHand() {
     renderPile(hand, "Tu mano", "hand-modal-title");
     if (hand.length > 0) {
         ["", CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
-            createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn", "#trash-container", null, () => {
+            createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", null, () => {
                 discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
                 renderPileHand();
             });
@@ -328,7 +328,7 @@ function openCardDetailModal(cardObj) {
     let optIndex = cardObj.chosenOptionIndex;
     if (cardObj.obtainingMethod === ObtainingMethod.FromPlayToHand || cardObj.obtainingMethod === ObtainingMethod.FromPlayToTrash) {
         let opt = optIndex !== null ? card.options[optIndex] : null;
-        $('#card-detail-option').text('Elegiste: ' + (opt ? opt.text : ''));
+        $('#card-detail-option').html(`<b>Elegiste</b>: ${opt ? opt.text : ''}`);
         $('#card-detail-info').text(opt ? opt.info : '');
     }
 
