@@ -24,8 +24,8 @@ $(document).ready(function () {
 });
 
 function bindEvents() {
-    $('#deck-nox').off('click').on('click', () => drawCardRandom(deckNox));
-    $('#deck-story').off('click').on('click', () => drawCardRandom(deckStory));
+    $('#deck-nox').off('click').on('click', () => renderPileNox());
+    $('#deck-story').off('click').on('click', () => renderPileStory());
 
     $('#hand-container').off('click').on('click', () => renderPileHand());
     $('#trash-container').off('click').on('click', () => renderPileTrash());
@@ -49,7 +49,7 @@ function bindEvents() {
 // Interaction ---------------------------------------------------------------------------------------------------------
 
 function setInteractionBlocked(isBlocked) {
-    const buttons = $('#deck-nox, #deck-story, #hand-container, #trash-container, #close-deck-modal, #close-card-detail-modal, #save-card-btn, #discard-card-btn');
+    const buttons = $('#deck-nox, #deck-story, #hand-container, #trash-container, #close-deck-modal, #close-card-detail-modal, .btn');
     const flip = $('#main-card-flip, #detail-card-flip');
     const modals = $('#deck-modal, #card-detail-modal');
     if (isBlocked) {
@@ -153,30 +153,34 @@ function handleOptionOutcome(card, opt, optIdx) {
 }
 
 function showStoreDiscardButtons(card, opt, optIdx) {
-    createActionButton("#final-options-area", "Guardar en tu mano", "save-card-btn", "#hand-container", card, optIdx, () => {
+    createActionButton("#final-options-area", "Guardar en tu mano", "main-save-card-btn", "save-card-btn", "#hand-container", card, () => {
         addToHand(card, optIdx, ObtainingMethod.FromPlayToHand);
     });
-    createActionButton("#final-options-area", "Descartar", "discard-card-btn", "#trash-container", card, optIdx, () => {
+    createActionButton("#final-options-area", "Descartar", "main-discard-card-btn", "discard-card-btn", "#trash-container", card, () => {
         addToTrash(card, optIdx, ObtainingMethod.FromPlayToTrash);
     });
 }
 
-function createActionButton(areaId, label, btnId, targetContainer, card, optIdx, action) {
+function createActionButton(areaId, label, btnId, btnClass, targetContainer, card, action) {
     let area = $(areaId);
-    area.append(`<button class="btn" id="${btnId}">${label}</button>`);
+    area.append(`<button id="${btnId}" class="btn ${btnClass}">${label}</button>`);
     area.addClass("mb-4");
     scrollDown();
 
     $(`#${btnId}`).off('click').on('click', function () {
-        setInteractionBlocked(true);
-        scrollUp();
-        setTimeout(() => {
-            animateCardMovement(card, targetContainer, () => {
-                action();
-                resetAreas();
-                setInteractionBlocked(false);
-            });
-        }, document.documentElement.scrollTop > 0 ? 700 : 0);
+        if (card != null) {
+            setInteractionBlocked(true);
+            scrollUp();
+            setTimeout(() => {
+                animateCardMovement(card, targetContainer, () => {
+                    action();
+                    resetAreas();
+                    setInteractionBlocked(false);
+                });
+            }, document.documentElement.scrollTop > 0 ? 700 : 0);
+        } else {
+            action();
+        }
     });
 }
 
@@ -220,10 +224,13 @@ function addToTrash(card, chosenOptionIndex, obtainingMethod) {
 
 function renderPile(pile, title, titleClass) {
     $('#deck-modal').addClass('active');
+
     let titleElement = $('#deck-modal-title');
     titleElement.text(title);
     titleElement.removeClass();
     titleElement.addClass("mb-4 " + titleClass);
+
+    $('#deck-modal-options').empty();
 
     let $container = $('#deck-modal-cards').empty();
     if (pile.length === 0) {
@@ -246,8 +253,30 @@ function closeDeckModal() {
     $('#deck-modal').removeClass('active');
 }
 
+function renderPileNox() {
+    renderPile(deckNox, "Mazo NOX", "nox-modal-title");
+    if (deckNox.length > 0) {
+        createActionButton("#deck-modal-options", "Sacar aleatoria", "pile-random-btn", "save-card-btn", "#trash-container", null, () => {
+            drawCardRandom(deckNox)
+            closeCardDetailModal();
+            closeDeckModal();
+        });
+    }
+}
+
+function renderPileStory() {
+    renderPile(deckStory, "Mazo de historia", "story-modal-title");
+}
+
 function renderPileHand() {
     renderPile(hand, "Tu mano", "hand-modal-title");
+    if (hand.length > 0) {
+        createActionButton("#deck-modal-options", "Descartar aleatoria", "pile-discard-random-btn", "discard-card-btn", "#trash-container", null, () => {
+            // discard random
+            renderPile(hand, "Tu mano", "hand-modal-title");
+        });
+        // discard random by types
+    }
 }
 
 function renderPileTrash() {
@@ -275,7 +304,11 @@ function openCardDetailModal(cardObj) {
         $(this).toggleClass('flipped');
     });
 
-    $('#card-detail-obtaining-method').text(cardObj.obtainingMethod);
+    let obtainingMethod = "";
+    if (hand.find(c => c.index === cardObj.index) || trash.find(c => c.index === cardObj.index)) {
+        obtainingMethod = cardObj.obtainingMethod;
+    }
+    $('#card-detail-obtaining-method').text(obtainingMethod);
 
     let optIndex = cardObj.chosenOptionIndex;
     if (cardObj.obtainingMethod === ObtainingMethod.FromPlayToHand || cardObj.obtainingMethod === ObtainingMethod.FromPlayToTrash) {
@@ -285,18 +318,25 @@ function openCardDetailModal(cardObj) {
     }
 
     if (hand.find(c => c.index === cardObj.index)) {
-        createActionButton("#card-detail-options", "Descartar", "discard-card-btn", "#trash-container", card, optIndex, () => {
+        createActionButton("#card-detail-options", "Descartar", "detail-discard-card-btn", "discard-card-btn", "#trash-container", card, () => {
             addToTrash(card, optIndex, ObtainingMethod.FromHandToTrash);
             removeFromPile(hand, card,"#hand-count");
             closeCardDetailModal();
             renderPileHand();
         });
     } else if (trash.find(c => c.index === cardObj.index)) {
-        createActionButton("#card-detail-options", "Guardar en tu mano", "save-card-btn", "#hand-container", card, optIndex, () => {
+        createActionButton("#card-detail-options", "Guardar en tu mano", "detail-save-card-btn", "save-card-btn", "#hand-container", card, () => {
             addToHand(card, optIndex, ObtainingMethod.FromTrashToHand);
             removeFromPile(trash, card,"#trash-count");
             closeCardDetailModal();
             renderPileTrash();
+        });
+    } else if (deckStory.find(c => c.index === cardObj.index)) {
+        createActionButton("#card-detail-options", "Guardar en tu mano", "detail-save-card-btn", "save-card-btn", "#hand-container", card, () => {
+            addToHand(card, optIndex, ObtainingMethod.FromStory);
+            removeFromPile(deckStory, card,"");
+            closeCardDetailModal();
+            renderPileStory();
         });
     }
 }

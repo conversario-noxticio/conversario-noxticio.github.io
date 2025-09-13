@@ -192,15 +192,20 @@ body.night-mode {
 }
 
 /* Buttons */
-#save-card-btn {
+.save-card-btn {
     background-color: var(--night-correct);
 }
-#save-card-btn:not(:last-child) {
+.save-card-btn:not(:last-child) {
     margin-right: 1.5rem;
  }
 
-#discard-card-btn {
+.discard-card-btn {
     background-color: var(--night-danger);
+}
+
+.card-option-btn {
+    background-color: var(--night-option);
+    color: var(--night-option-text);
 }
 
 #options-area {
@@ -209,11 +214,6 @@ body.night-mode {
 
 #options-area button:not(:last-child) {
     margin-right: 1rem;
-}
-
-.card-option-btn {
-    background-color: var(--night-option);
-    color: var(--night-option-text);
 }
 
 #info-area, #card-detail-info {
@@ -254,6 +254,7 @@ body.night-mode {
     box-shadow: 0 8px 40px #000a;
     position: relative;
     overflow: auto;
+    text-align: center;
 }
 .close-modal {
     position: absolute;
@@ -292,12 +293,28 @@ body.night-mode {
         border-color: var(--night-accent);
     }
 
-.trash-modal-title {
-    color: var(--night-danger);
+.nox-modal-title {
+    color: var(--night-accent);
+}
+
+.story-modal-title {
+    color: var(--night-accent);
 }
 
 .hand-modal-title {
     color: var(--night-correct);
+}
+
+.trash-modal-title {
+    color: var(--night-danger);
+}
+
+#deck-modal-options {
+     margin-bottom: 3rem !important;
+}
+
+#deck-modal-options:empty {
+    margin-bottom: 1rem !important;
 }
 
 @media (max-width: 600px) {

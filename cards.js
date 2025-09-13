@@ -209,7 +209,7 @@ const cards = [
         options: [
             {
                 text: "Resistir",
-                info: ". El apóstol peregrino nota que te resistes, te considera un enemigo y decide atacarte. " +
+                info: "El apóstol peregrino nota que te resistes, te considera un enemigo y decide atacarte. " +
                     "Pierdes una carta aleatoria de tu mano y también esta carta. Deja la carta aleatoria y esta " +
                     "en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
