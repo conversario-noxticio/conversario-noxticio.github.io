@@ -217,9 +217,6 @@ body.night-mode {
 .save-card-btn:hover {
     background-color: color-mix(in srgb, var(--night-bkg-correct) 50%, var(--night-hover) 50%);
 }
-.save-card-btn:not(:last-child) {
-    margin-right: 1.5rem;
- }
 
 .discard-card-btn {
     background-color: var(--night-bkg-danger);
@@ -227,22 +224,12 @@ body.night-mode {
 .discard-card-btn:hover {
     background-color: color-mix(in srgb, var(--night-bkg-danger) 50%, var(--night-hover) 50%);
 }
-.discard-card-btn:not(:last-child) {
-    margin-right: 1.5rem;
-}
 
 .card-option-btn {
     background-color: var(--night-bkg-neutral);
 }
 .card-option-btn:hover {
     background-color: color-mix(in srgb, var(--night-bkg-neutral) 50%, var(--night-hover) 50%);
-}
-.card-option-btn:not(:last-child) {
-    margin-right: 1.5rem;
-}
-
-#options-area {
-    text-align: center;
 }
 
 #info-area, #card-detail-info {
@@ -332,8 +319,15 @@ body.night-mode {
     color: var(--night-title-danger);
 }
 
+#options-area, #final-options-area, #deck-modal-options, #card-detail-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 1.5rem;
+}
+
 #deck-modal-options {
-     margin-bottom: 3rem !important;
+    margin-bottom: 3rem !important;
 }
 
 #deck-modal-options:empty {
