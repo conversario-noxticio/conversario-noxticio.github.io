@@ -91,10 +91,10 @@ function discardCardRandom(deck, type, obtainingMethod) {
     if (deckFiltered.length === 0) return;
 
     const cardFilteredIndex = Math.floor(Math.random() * deckFiltered.length);
-    const cardId = deckFiltered[cardFilteredIndex].index;
-    const deckIndex = deck.findIndex(c => c.index === cardId);
+    const card = deckFiltered[cardFilteredIndex];
+    const deckIndex = deck.findIndex(c => c.index === card.index);
     addToTrash(deck[deckIndex], null, obtainingMethod);
-    deck.splice(deckIndex, 1);
+    removeFromPile(hand, card,"#hand-count");
 }
 
 
