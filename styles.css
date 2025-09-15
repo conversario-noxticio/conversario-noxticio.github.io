@@ -169,6 +169,11 @@ body.night-mode {
     margin-top: 1.5rem;
 }
 
+.card-type-mini {
+    width: 2rem;
+    margin-left: 0.5rem;
+}
+
 
 /** Buttons ***********************************************************************************************************/
 
@@ -455,12 +460,27 @@ body.night-mode {
 
 /** Dice and coin *****************************************************************************************************/
 
-.result-reveal-container {
+#dice-img, #coin-img {
+    width: 70px;
     position: absolute;
-    bottom: 0;
-    padding-bottom: 1.5rem;  
-    width: 100%;
-    text-align: center;
+    left: 25px;
+    top: 0;
+    z-index: 2;
+}
+
+#dice-result, #coin-result {
+    position: absolute;
+    left: 25px;
+    top: 18px;
+    z-index: 1;
+    opacity: 0;
+}
+
+.result-reveal-container {
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 70px;
 }
 
 .dice-anim {

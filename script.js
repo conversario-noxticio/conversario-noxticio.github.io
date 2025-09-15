@@ -113,6 +113,24 @@ function discardCardRandom(deck, type, obtainingMethod) {
 }
 
 
+// Types ---------------------------------------------------------------------------------------------------------------
+
+function getCardTypeImage(type) {
+    switch (type) {
+        case CardType.Ataque:
+            return "images/types/ataque.png";
+        case CardType.Apoyo:
+            return "images/types/apoyo.png";
+        case CardType.Defensa:
+            return "images/types/defensa.png";
+        case CardType.Magia:
+            return "images/types/magia.png";
+        case CardType.Historia:
+            return "images/types/historia.png";
+    }
+}
+
+
 // Card options --------------------------------------------------------------------------------------------------------
 
 function showCardOptions(card) {
@@ -277,15 +295,17 @@ function renderPileHand() {
     renderPile(hand, "Tu mano", "hand-modal-title");
     let currentTypes = []
     if (hand.length > 0) {
-        currentTypes.push("");
+        currentTypes.push({type: "", img: ""});
     }
     [CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
         if (hand.filter(c => c.type === type).length > 0) {
-            currentTypes.push(type);
+            let img = `<img src="${getCardTypeImage(type)}" alt="Card Type" class="card-type-mini">`;
+            currentTypes.push({type: type, img: img});
         }
     })
-    currentTypes.forEach(type => {
-        createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
+    currentTypes.forEach(currentType => {
+        let type = currentType.type;
+        createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type + currentType.img) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
             discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
             renderPileHand();
         });
@@ -360,7 +380,7 @@ function closeCardDetailModal() {
 }
 
 
-// Text anims ----------------------------------------------------------------------------------------------------------
+// Text anim -----------------------------------------------------------------------------------------------------------
 
 function animateTypeWriter(selector, text, duration, callback) {
     let words = text.split(' ');
@@ -429,9 +449,9 @@ function showDice(opt, card, optIdx) {
     let diceValue = Math.floor(Math.random() * 6) + 1;
     let randomArea = $('#random-area');
     randomArea.html(`
-      <div class="result-reveal-container" style="position:relative; display:inline-block; width:120px; height:70px;">
-        <img src="images/random/dice.png" alt="Dado" id="dice-img" class="result-img" style="width:70px; position:absolute; left:25px; top:0; z-index:2;">
-        <span id="dice-result" class="fs-4 result-value" style="position:absolute; left:25px; top:18px; z-index:1; opacity:0;"></span>
+      <div class="result-reveal-container">
+        <img src="images/random/dice.png" alt="Dado" id="dice-img" class="result-img">
+        <span id="dice-result" class="fs-4 result-value"></span>
       </div>
     `).addClass("mb-4");
 
@@ -454,9 +474,9 @@ function showCoin(opt, card, optIdx) {
     let coinValue = Math.random() < 0.5 ? "CARA" : "CRUZ";
     let randomArea = $('#random-area');
     randomArea.html(`
-      <div class="result-reveal-container" style="position:relative; display:inline-block; width:120px; height:70px;">
-        <img src="images/random/coin.png" alt="Moneda" id="coin-img" class="result-img" style="width:70px; position:absolute; left:25px; top:0; z-index:2;">
-        <span id="coin-result" class="fs-4 result-value" style="position:absolute; left:25px; top:18px; z-index:1; opacity:0;"></span>
+      <div class="result-reveal-container">
+        <img src="images/random/coin.png" alt="Moneda" id="coin-img" class="result-img">
+        <span id="coin-result" class="fs-4 result-value"></span>
       </div>
     `).addClass("mb-4");
 
