@@ -275,14 +275,21 @@ function renderPileStory() {
 
 function renderPileHand() {
     renderPile(hand, "Tu mano", "hand-modal-title");
+    let currentTypes = []
     if (hand.length > 0) {
-        ["", CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
-            createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
-                discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
-                renderPileHand();
-            });
-        });
+        currentTypes.push("");
     }
+    [CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
+        if (hand.filter(c => c.type === type).length > 0) {
+            currentTypes.push(type);
+        }
+    })
+    currentTypes.forEach(type => {
+        createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
+            discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
+            renderPileHand();
+        });
+    });
 }
 
 function renderPileTrash() {
