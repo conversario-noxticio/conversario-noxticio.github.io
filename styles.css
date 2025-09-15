@@ -1,4 +1,7 @@
-﻿:root {
+﻿
+/** Body **************************************************************************************************************/
+
+:root {
     --night-bg-grad0: #181a1b;
     --night-bg-grad1: #242432;
     --night-primary: #5a8dee;
@@ -24,6 +27,9 @@ body.night-mode {
     padding-bottom: 1rem;
 }
 
+
+/** Navbar ************************************************************************************************************/
+
 .navbar {
     background: var(--night-bg-grad0) !important;
     border-bottom: none !important;
@@ -46,15 +52,18 @@ body.night-mode {
     filter: brightness(0.9);
     transition: filter 0.2s;
 }
-
 .instagram-icon:hover {
     filter: brightness(1.2) drop-shadow(0 0 8px var(--night-accent));
 }
+
+
+/** Main area *********************************************************************************************************/
 
 .main-area {
     min-height: 80vh;
     padding: 10rem;
 }
+
 @media (max-width: 1100px) {
     .main-area {
         padding: 5rem;
@@ -83,7 +92,6 @@ body.night-mode {
     transition: width 0.2s ease;
 }
 
-/* Responsive decks: grid and images */
 @media (max-width: 1100px) {
     .deck-img {
         width: 13rem;
@@ -119,7 +127,9 @@ body.night-mode {
     }
 }
 
-/* Card flip */
+
+/** Card **************************************************************************************************************/
+
 .card-flip-container {
     width: 20rem;
     max-width: 92vw;
@@ -163,7 +173,27 @@ body.night-mode {
     transform: rotateY(180deg);
 }
 
-/* Piles and counters */
+#info-area, #card-detail-info {
+    text-align: justify;
+}
+
+#card-detail-area {
+    display: flex;
+    justify-content: center;
+}
+
+#card-detail-obtaining-method:not(:empty), #card-detail-option:not(:empty), #card-detail-info:not(:empty), #card-detail-options:not(:empty) {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+
+/** Buttons ***********************************************************************************************************/
+
+.btn {
+    color: var(--night-text);
+}
+
 .trash-container, .hand-container {
     position: fixed;
     bottom: 22px;
@@ -181,14 +211,11 @@ body.night-mode {
 .trash-container {
     left: 22px;
 }
-
 .hand-container {
     right: 22px;
 }
-
-.trash-container:hover,
-.hand-container:hover {
-    background: #333b44;
+.trash-container:hover, .hand-container:hover {
+    background: color-mix(in srgb, var(--night-bg-grad0) 50%, var(--night-hover) 50%);
 }
 
 .trash-icon, .hand-icon {
@@ -211,7 +238,6 @@ body.night-mode {
     color: var(--night-title-danger);
 }
 
-/* Buttons */
 .save-card-btn {
     background-color: var(--night-bkg-correct);
 }
@@ -233,21 +259,9 @@ body.night-mode {
     background-color: color-mix(in srgb, var(--night-bkg-neutral) 50%, var(--night-hover) 50%);
 }
 
-#info-area, #card-detail-info {
-    text-align: justify;
-}
 
-#card-detail-area {
-    display: flex;
-    justify-content: center;
-}
+/** Modals ************************************************************************************************************/
 
-#card-detail-obtaining-method:not(:empty), #card-detail-option:not(:empty), #card-detail-info:not(:empty), #card-detail-options:not(:empty) {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-/* Modals and layout */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -261,6 +275,7 @@ body.night-mode {
 .modal-overlay.active {
     display: flex;
 }
+
 .modal-content {
     background: var(--night-bg-grad1);
     border-radius: 18px;
@@ -273,6 +288,7 @@ body.night-mode {
     overflow: auto;
     text-align: center;
 }
+
 .close-modal {
     position: absolute;
     top: 18px;
@@ -280,7 +296,7 @@ body.night-mode {
     background: none;
     border: none;
     font-size: 2rem;
-    color: #fff;
+    color: var(--night-text);
     cursor: pointer;
     z-index: 10;
     line-height: 1;
@@ -289,11 +305,13 @@ body.night-mode {
 .close-modal:hover {
     color: var(--night-accent);
 }
+
 .hand-cards-scroll {
     overflow-x: auto;
     overflow-y: hidden;
     gap: 1rem;
 }
+
 .hand-card-thumb {
     width: 10rem;
     height: 14rem;
@@ -350,6 +368,9 @@ body.night-mode {
     }
 }
 
+
+/** Anim **************************************************************************************************************/
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -369,9 +390,6 @@ body.night-mode {
         width: 100%;
     }
 }
-
-
-/* Card anims */
 
 @keyframes saveCard {
     0% {
@@ -398,9 +416,6 @@ body.night-mode {
 #card-clone {
     transition: top 0.7s ease, left 0.7s ease;
 }
-
-
-/* Anim break */
 
 @keyframes breakLeft {
     0% {
@@ -435,7 +450,7 @@ body.night-mode {
 }
 
 
-/* Dice and coin */
+/** Dice and coin *****************************************************************************************************/
 
 .result-reveal-container {
     position: absolute;
@@ -490,17 +505,10 @@ body.night-mode {
 }
 
 .result-img.reveal-move {
-    left: 0px !important; /* Move result to left */
+    left: 0 !important; /* Move result to left */
 }
 
 .result-value.reveal-move {
     left: 80px !important; /* Move result to right */
     opacity: 1 !important;
-}
-
-
-/* Generic */
-
-.pl-1 {
-    padding-left: 1rem;
 }
