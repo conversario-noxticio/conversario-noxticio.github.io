@@ -2,8 +2,9 @@
 /** Body **************************************************************************************************************/
 
 :root {
-    --night-bg-grad0: #181a1b;
-    --night-bg-grad1: #242432;
+    --night-bg-grad0: #000000;
+    --night-bg-grad1: #181a1b;
+    --night-bg-grad2: #242432;
     --night-primary: #5a8dee;
     --night-text: #f5edf8;
     --night-accent: #8f8797;
@@ -21,7 +22,7 @@ body {
 }
 
 body.night-mode {
-    background: linear-gradient(to bottom, var(--night-bg-grad0) 10%, var(--night-bg-grad1) 100%);
+    background: linear-gradient(to bottom, var(--night-bg-grad1) 10%, var(--night-bg-grad2) 100%);
     color: var(--night-text);
     min-height: 100vh;
     padding-bottom: 1rem;
@@ -31,7 +32,7 @@ body.night-mode {
 /** Navbar ************************************************************************************************************/
 
 .navbar {
-    background: var(--night-bg-grad0) !important;
+    background: var(--night-bg-grad1) !important;
     border-bottom: none !important;
 }
 
@@ -156,7 +157,7 @@ body.night-mode {
     border-radius: 0.6rem;
     backface-visibility: hidden;
     box-shadow: 0 6px 24px 0 #0008;
-    background: var(--night-bg-grad1);
+    background: var(--night-bg-grad2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -192,6 +193,7 @@ body.night-mode {
 
 .btn {
     color: var(--night-text);
+    border-radius: 12px;
 }
 
 .trash-container, .hand-container {
@@ -201,21 +203,20 @@ body.night-mode {
     display: flex;
     align-items: center;
     cursor: pointer;
-    background: var(--night-bg-grad0);
-    border-radius: 28px;
+    background: color-mix(in srgb, var(--night-bg-grad0) 80%, var(--night-bg-grad2) 20%);
+    border-radius: 18px;
     padding: 8px 18px;
     box-shadow: 0 2px 12px #0007;
     transition: background 0.2s;
 }
-
+.trash-container:hover, .hand-container:hover {
+    background: color-mix(in srgb, var(--night-bg-grad0) 50%, var(--night-bg-grad2) 50%);
+}
 .trash-container {
     left: 22px;
 }
 .hand-container {
     right: 22px;
-}
-.trash-container:hover, .hand-container:hover {
-    background: color-mix(in srgb, var(--night-bg-grad0) 50%, var(--night-hover) 50%);
 }
 
 .trash-icon, .hand-icon {
@@ -240,6 +241,7 @@ body.night-mode {
 
 .save-card-btn {
     background-color: var(--night-bkg-correct);
+    border: 1px solid color-mix(in srgb, var(--night-bkg-correct) 80%, var(--night-text) 20%);
 }
 .save-card-btn:hover {
     background-color: color-mix(in srgb, var(--night-bkg-correct) 50%, var(--night-hover) 50%);
@@ -247,6 +249,7 @@ body.night-mode {
 
 .discard-card-btn {
     background-color: var(--night-bkg-danger);
+    border: 1px solid color-mix(in srgb, var(--night-bkg-danger) 80%, var(--night-text) 20%);
 }
 .discard-card-btn:hover {
     background-color: color-mix(in srgb, var(--night-bkg-danger) 50%, var(--night-hover) 50%);
@@ -254,6 +257,7 @@ body.night-mode {
 
 .card-option-btn {
     background-color: var(--night-bkg-neutral);
+    border: 1px solid color-mix(in srgb, var(--night-bkg-neutral) 80%, var(--night-text) 20%);
 }
 .card-option-btn:hover {
     background-color: color-mix(in srgb, var(--night-bkg-neutral) 50%, var(--night-hover) 50%);
@@ -277,7 +281,7 @@ body.night-mode {
 }
 
 .modal-content {
-    background: var(--night-bg-grad1);
+    background: var(--night-bg-grad2);
     border-radius: 18px;
     padding: 22px;
     min-width: 320px;
