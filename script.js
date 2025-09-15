@@ -182,7 +182,7 @@ function createActionButton(areaId, label, btnId, btnClass, targetContainer, car
                     resetAreas();
                     setInteractionBlocked(false);
                 });
-            }, document.documentElement.scrollTop > 0 ? 700 : 0);
+            }, isScrollUpPending() ? 700 : 0);
         } else {
             action();
         }
@@ -371,11 +371,21 @@ function animateTypeWriter(selector, text, duration, callback) {
     nextWord();
 }
 
+function isScrollDownPending() {
+    return document.documentElement.scrollTop < (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+}
+
+function isScrollUpPending() {
+    return ($('#card-detail-modal').hasClass('active') ? $('.modal-content').scrollTop() : document.documentElement.scrollTop) > 0;
+}
+
 function scrollDown() {
     $('html, body').animate({ scrollTop: $('#final-options-area').offset().top - 50 }, 300);
 }
+
 function scrollUp() {
     $('html, body').animate({ scrollTop: $('#card-area').offset().top - 50 }, 300);
+    $('.modal-content').animate({ scrollTop: $('#close-card-detail-modal').offset().top - 50 }, 300);
 }
 
 
@@ -430,7 +440,7 @@ function showDice(opt, card, optIdx) {
             diceResult.addClass('reveal-move');
             setTimeout(() => showStoreDiscardButtons(card, opt, optIdx), 900);
         }, 810);
-    }, isScrollPending() ? 400 : 0);
+    }, isScrollDownPending() ? 400 : 0);
 }
 
 function showCoin(opt, card, optIdx) {
@@ -455,9 +465,5 @@ function showCoin(opt, card, optIdx) {
             coinResult.addClass('reveal-move');
             setTimeout(() => showStoreDiscardButtons(card, opt, optIdx), 900);
         }, 1010);
-    }, isScrollPending() ? 400 : 0);
-}
-
-function isScrollPending() {
-    return document.documentElement.scrollTop < (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+    }, isScrollDownPending() ? 400 : 0);
 }
