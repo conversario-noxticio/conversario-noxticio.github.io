@@ -6,10 +6,6 @@ let deckStory = [];
 let hand = [];
 let trash = [];
 
-// Flags
-let isCardFlipped = false;
-let areCardOptionsShown = false;
-
 
 // Init ----------------------------------------------------------------------------------------------------------------
 
@@ -74,14 +70,33 @@ function drawCardRandom(deck) {
     $('#deck-nox, #deck-story').hide();
     $('#card-area, #options-area, #info-area, #random-area, #final-options-area').empty().removeClass("mb-4");
 
-    isCardFlipped = false;
-    areCardOptionsShown = false;
-
     let idx = Math.floor(Math.random() * deck.length);
-    let currentCard = deck[idx];
+    let card = deck[idx];
     deck.splice(idx, 1);
 
-    showCard(currentCard, false);
+    $('#card-area').html(`
+        <div class="card-flip-container">
+            <div class="card-flip" id="main-card-flip">
+                <div class="card-face front">
+                    <img src="images/cards/${card.index}-front.jpg" alt="Anverso">
+                </div>
+                <div class="card-face back">
+                    <img src="images/cards/${card.index}-back.jpg" alt="Reverso">
+                </div>
+            </div>
+        </div>
+    `);
+
+    let isCardFlipped = false;
+    let areCardOptionsShown = false;
+    $('#main-card-flip').off('click').on('click', function () {
+        isCardFlipped = !isCardFlipped;
+        $(this).toggleClass('flipped');
+        if (isCardFlipped && !areCardOptionsShown) {
+            setTimeout(() => showCardOptions(card), 400);
+            areCardOptionsShown = true;
+        }
+    });
 }
 
 function discardCardRandom(deck, type, obtainingMethod) {
@@ -99,30 +114,6 @@ function discardCardRandom(deck, type, obtainingMethod) {
 
 
 // Card options --------------------------------------------------------------------------------------------------------
-
-function showCard(card, flipped) {
-    $('#card-area').html(`
-        <div class="card-flip-container">
-            <div class="card-flip${flipped ? ' flipped' : ''}" id="main-card-flip">
-                <div class="card-face front">
-                    <img src="images/cards/${card.index}-front.jpg" alt="Anverso">
-                </div>
-                <div class="card-face back">
-                    <img src="images/cards/${card.index}-back.jpg" alt="Reverso">
-                </div>
-            </div>
-        </div>
-    `);
-
-    $('#main-card-flip').off('click').on('click', function () {
-        isCardFlipped = !isCardFlipped;
-        $(this).toggleClass('flipped');
-        if (isCardFlipped && !areCardOptionsShown) {
-            setTimeout(() => showCardOptions(card), 400);
-            areCardOptionsShown = true;
-        }
-    });
-}
 
 function showCardOptions(card) {
     let html = '';
@@ -167,15 +158,15 @@ function handleOptionOutcome(card, opt, optIdx) {
 }
 
 function showStoreDiscardButtons(card, opt, optIdx) {
-    createActionButton("#final-options-area", "Guardar en tu mano", "main-save-card-btn", "save-card-btn", "#hand-container", card, () => {
+    createActionButton("#final-options-area", "Guardar en tu mano", "main-save-card-btn", "save-card-btn", "#hand-container", '#card-area', card, () => {
         addToHand(card, optIdx, ObtainingMethod.FromPlayToHand);
     });
-    createActionButton("#final-options-area", "Descartar", "main-discard-card-btn", "discard-card-btn", "#trash-container", card, () => {
+    createActionButton("#final-options-area", "Descartar", "main-discard-card-btn", "discard-card-btn", "#trash-container", '#card-area', card, () => {
         addToTrash(card, optIdx, ObtainingMethod.FromPlayToTrash);
     });
 }
 
-function createActionButton(areaId, label, btnId, btnClass, targetContainer, card, action) {
+function createActionButton(areaId, label, btnId, btnClass, targetContainer, cardAreaId, card, action) {
     let area = $(areaId);
     area.append(`<button id="${btnId}" class="btn ${btnClass}">${label}</button>`);
     area.addClass("mb-4");
@@ -186,7 +177,7 @@ function createActionButton(areaId, label, btnId, btnClass, targetContainer, car
             setInteractionBlocked(true);
             scrollUp();
             setTimeout(() => {
-                animateCardMovement(card, targetContainer, () => {
+                animateCardMovement(card, targetContainer, cardAreaId, () => {
                     action();
                     resetAreas();
                     setInteractionBlocked(false);
@@ -270,7 +261,7 @@ function closeDeckModal() {
 function renderPileNox() {
     renderPile(deckNox, "Mazo NOX", "nox-modal-title");
     if (deckNox.length > 0) {
-        createActionButton("#deck-modal-options", "Sacar aleatoria", "pile-random-btn", "save-card-btn", "#trash-container", null, () => {
+        createActionButton("#deck-modal-options", "Sacar aleatoria", "pile-random-btn", "save-card-btn", "#trash-container", '#detail-flip-container', null, () => {
             drawCardRandom(deckNox)
             closeCardDetailModal();
             closeDeckModal();
@@ -286,7 +277,7 @@ function renderPileHand() {
     renderPile(hand, "Tu mano", "hand-modal-title");
     if (hand.length > 0) {
         ["", CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
-            createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", null, () => {
+            createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
                 discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
                 renderPileHand();
             });
@@ -303,7 +294,6 @@ function renderPileTrash() {
 function openCardDetailModal(cardObj) {
     $('#card-detail-modal').addClass('active');
     let card = cards.find(c => c.index === cardObj.index);
-    let flipped = false;
 
     $('#card-detail-area').html(`
         <div class="card-flip-container" id="detail-flip-container">
@@ -314,8 +304,9 @@ function openCardDetailModal(cardObj) {
         </div>
     `);
 
+    let isCardFlipped = false;
     $('#detail-card-flip').off('click').on('click', function () {
-        flipped = !flipped;
+        isCardFlipped = !isCardFlipped;
         $(this).toggleClass('flipped');
     });
 
@@ -333,21 +324,21 @@ function openCardDetailModal(cardObj) {
     }
 
     if (hand.find(c => c.index === cardObj.index)) {
-        createActionButton("#card-detail-options", "Descartar", "detail-discard-card-btn", "discard-card-btn", "#trash-container", card, () => {
+        createActionButton("#card-detail-options", "Descartar", "detail-discard-card-btn", "discard-card-btn", "#trash-container", '#detail-flip-container', card, () => {
             addToTrash(card, optIndex, ObtainingMethod.FromHandToTrash);
             removeFromPile(hand, card,"#hand-count");
             closeCardDetailModal();
             renderPileHand();
         });
     } else if (trash.find(c => c.index === cardObj.index)) {
-        createActionButton("#card-detail-options", "Guardar en tu mano", "detail-save-card-btn", "save-card-btn", "#hand-container", card, () => {
+        createActionButton("#card-detail-options", "Guardar en tu mano", "detail-save-card-btn", "save-card-btn", "#hand-container", '#detail-flip-container', card, () => {
             addToHand(card, optIndex, ObtainingMethod.FromTrashToHand);
             removeFromPile(trash, card,"#trash-count");
             closeCardDetailModal();
             renderPileTrash();
         });
     } else if (deckStory.find(c => c.index === cardObj.index)) {
-        createActionButton("#card-detail-options", "Guardar en tu mano", "detail-save-card-btn", "save-card-btn", "#hand-container", card, () => {
+        createActionButton("#card-detail-options", "Guardar en tu mano", "detail-save-card-btn", "save-card-btn", "#hand-container", '#detail-flip-container', card, () => {
             addToHand(card, optIndex, ObtainingMethod.FromStory);
             removeFromPile(deckStory, card,"");
             closeCardDetailModal();
@@ -388,11 +379,12 @@ function scrollUp() {
 }
 
 
-// Card anims ----------------------------------------------------------------------------------------------------------
+// Card anim -----------------------------------------------------------------------------------------------------------
 
-function animateCardMovement(card, moveToId, cb) {
+function animateCardMovement(card, moveToId, cardAreaId, cb) {
     $('.card-flip-container')[0].style.visibility = 'hidden';
-    let cardArea = $('#card-area');
+    let cardArea = $(cardAreaId);
+    let isCardFlipped = $(".card-flip-container").children()[0].classList.contains('flipped');
     let $clone = $(`
         <div id="card-clone" class="card-flip-container" style="position:fixed; left:${cardArea.offset()?.left || 0}px; top:${cardArea.offset()?.top || 0}px; z-index:2000;">
             <div class="card-flip${isCardFlipped ? ' flipped' : ''}">
