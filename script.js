@@ -125,8 +125,8 @@ function getCardTypeImage(type) {
             return "images/types/defensa.png";
         case CardType.Magia:
             return "images/types/magia.png";
-        case CardType.Historia:
-            return "images/types/historia.png";
+        default:
+            return "";
     }
 }
 
@@ -299,7 +299,8 @@ function renderPileHand() {
     }
     [CardType.Ataque, CardType.Apoyo, CardType.Defensa, CardType.Magia, CardType.Historia].forEach(type => {
         if (hand.filter(c => c.type === type).length > 0) {
-            let img = `<img src="${getCardTypeImage(type)}" alt="Card Type" class="card-type-mini">`;
+            let typeImg = getCardTypeImage(type);
+            let img = (typeImg === "") ? "" : `<img src="${typeImg}" alt="Card Type" class="card-type-mini">`;
             currentTypes.push({type: type, img: img});
         }
     })
