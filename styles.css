@@ -310,12 +310,6 @@ body.night-mode {
     color: var(--night-accent);
 }
 
-.hand-cards-scroll {
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 1rem;
-}
-
 .hand-card-thumb {
     width: 10rem;
     height: 14rem;
@@ -355,6 +349,15 @@ body.night-mode {
 
 #deck-modal-options:empty {
     margin-bottom: 1rem !important;
+}
+
+#deck-modal-cards {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 1rem;
+    justify-content: center;
 }
 
 @media (max-width: 600px) {
