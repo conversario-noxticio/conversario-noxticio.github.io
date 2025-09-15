@@ -40,9 +40,7 @@ body.night-mode {
     height: 32px;
 }
 
-.instagram-icon,
-.trash-icon,
-.hand-icon {
+.instagram-icon {
     max-width: 100%;
     height: auto;
 }
@@ -108,23 +106,6 @@ body.night-mode {
 @media (max-width: 600px) {
     .deck-img {
         width: 8.5rem;
-    }
-    .modal-content,
-    .card-detail-modal-content {
-        min-width: 98vw;
-        max-width: 99vw;
-        padding: 18px 8px;
-    }
-    .hand-cards-scroll {
-        max-width: 99vw;
-    }
-    .hand-card-thumb {
-        width: 8rem;
-        height: 12rem;
-    }
-    .hand-icon, .trash-icon {
-        width: 30px;
-        height: 30px;
     }
 }
 
@@ -284,13 +265,32 @@ body.night-mode {
     background: var(--night-bg-grad2);
     border-radius: 18px;
     padding: 22px;
-    min-width: 320px;
+    min-width: 40vw;
     max-width: 90vw;
+    width: auto;
     max-height: 90vh;
     box-shadow: 0 8px 40px #000a;
     position: relative;
     overflow: auto;
     text-align: center;
+}
+
+@media (max-width: 1100px) {
+    .modal-content, .card-detail-modal-content {
+        min-width: 60vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content, .card-detail-modal-content {
+        min-width: 75vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-content, .card-detail-modal-content {
+        min-width: 90vw;
+    }
 }
 
 .close-modal {
@@ -361,10 +361,6 @@ body.night-mode {
 }
 
 @media (max-width: 600px) {
-    .modal-content, .card-detail-modal-content {
-        min-width: 90vw;
-    }
-
     .hand-cards-scroll {
         max-width: 90vw;
     }
