@@ -74,8 +74,8 @@ function drawCardRandom(deck) {
     let card = deck[idx];
     deck.splice(idx, 1);
 
-    $('#card-area').html(`
-        <div class="card-flip-container">
+    let $clone = $(`
+        <div class="card-flip-container draw-card">
             <div class="card-flip" id="main-card-flip">
                 <div class="card-face front">
                     <img src="images/cards/${card.index}-front.jpg" alt="Anverso">
@@ -85,11 +85,16 @@ function drawCardRandom(deck) {
                 </div>
             </div>
         </div>
-    `);
+    `).appendTo('#card-area');
+    
+    setTimeout(() => {
+        $('#card-area').html($clone.clone().removeClass('draw-card'));
+        $clone.remove();
+    }, 520);
 
     let isCardFlipped = false;
     let areCardOptionsShown = false;
-    $('#main-card-flip').off('click').on('click', function () {
+    $(document).off('click', '#main-card-flip').on('click', '#main-card-flip', function () {
         isCardFlipped = !isCardFlipped;
         $(this).toggleClass('flipped');
         if (isCardFlipped && !areCardOptionsShown) {
