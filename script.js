@@ -262,7 +262,7 @@ function renderPile(pile, title, titleClass) {
         $('#deck-modal-empty').addClass('d-none');
         pile.forEach((c, i) => {
             $container.append(`
-                <img src="images/cards/${c.index}-front.jpg" class="hand-card-thumb me-2" data-idx="${i}" alt="Carta ${c.index}">
+                <img src="images/cards/${c.index}-front.jpg" class="hand-card-thumb" data-idx="${i}" alt="Carta ${c.index}">
             `);
         });
         $('#deck-modal-cards .hand-card-thumb').off('click').on('click', function () {
