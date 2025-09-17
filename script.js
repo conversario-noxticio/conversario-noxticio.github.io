@@ -113,8 +113,11 @@ function discardCardRandom(deck, type, obtainingMethod) {
     const cardFilteredIndex = Math.floor(Math.random() * deckFiltered.length);
     const card = deckFiltered[cardFilteredIndex];
     const deckIndex = deck.findIndex(c => c.index === card.index);
-    addToTrash(deck[deckIndex], null, obtainingMethod);
-    removeFromPile(hand, card,"#hand-count");
+    animateCardThumbMovementScroll(cardFilteredIndex, "#trash-container", () => {
+        addToTrash(deck[deckIndex], null, obtainingMethod);
+        removeFromPile(hand, card, "#hand-count");
+        renderPileHand();
+    });
 }
 
 
@@ -189,7 +192,7 @@ function showStoreDiscardButtons(card, opt, optIdx) {
     });
 }
 
-function createActionButton(areaId, label, btnId, btnClass, targetContainer, cardAreaId, card, action) {
+function createActionButton(areaId, label, btnId, btnClass, moveToId, cardAreaId, card, action) {
     let area = $(areaId);
     area.append(`<button id="${btnId}" class="btn ${btnClass}">${label}</button>`);
     area.addClass("mb-4");
@@ -200,7 +203,7 @@ function createActionButton(areaId, label, btnId, btnClass, targetContainer, car
             setInteractionBlocked(true);
             scrollUp();
             setTimeout(() => {
-                animateCardMovement(card, targetContainer, cardAreaId, () => {
+                animateCardMovement(card, moveToId, cardAreaId, () => {
                     action();
                     resetAreas();
                     setInteractionBlocked(false);
@@ -409,7 +412,7 @@ function isScrollDownPending() {
 }
 
 function isScrollUpPending() {
-    return ($('#card-detail-modal').hasClass('active') ? $('.modal-content').scrollTop() : document.documentElement.scrollTop) > 0;
+    return ($('#card-detail-modal').hasClass('active') ? $(".card-detail-modal-content").scrollTop() : document.documentElement.scrollTop) > 0;
 }
 
 function scrollDown() {
@@ -425,9 +428,10 @@ function scrollUp() {
 // Card anim -----------------------------------------------------------------------------------------------------------
 
 function animateCardMovement(card, moveToId, cardAreaId, cb) {
-    $('.card-flip-container')[0].style.visibility = 'hidden';
+    let container = $('.card-flip-container');
+    container[0].style.visibility = 'hidden';
     let cardArea = $(cardAreaId);
-    let isCardFlipped = $(".card-flip-container").children()[0].classList.contains('flipped');
+    let isCardFlipped = container.children()[0].classList.contains('flipped');
     let $clone = $(`
         <div id="card-clone" class="card-flip-container" style="position:fixed; left:${cardArea.offset()?.left || 0}px; top:${cardArea.offset()?.top || 0}px; z-index:2000;">
             <div class="card-flip${isCardFlipped ? ' flipped' : ''}">
@@ -445,6 +449,52 @@ function animateCardMovement(card, moveToId, cardAreaId, cb) {
     setTimeout(() => {
         $clone.addClass('save-card');
         setTimeout(() => { $clone.remove(); if (cb) cb(); }, 710);
+    }, 10);
+}
+
+function animateCardThumbMovementScroll(cardIndex, moveToId, callback) {
+    let cardThumb = $(`#deck-modal-cards .hand-card-thumb[data-idx="${cardIndex}"]`);
+    if (cardThumb.length === 0) {
+        if (callback) callback();
+        return;
+    }
+
+    let container = $('.hand-modal-content');
+    let containerTop = container.scrollTop();
+    let containerBottom = containerTop + container.height();
+
+    let thumbTop = cardThumb.position().top + containerTop;
+    let thumbBottom = thumbTop + cardThumb.outerHeight(true);
+
+    if (thumbTop < containerTop || thumbBottom > containerBottom) {
+        container.animate({
+            scrollTop: thumbTop - (container.height() / 2) + (cardThumb.outerHeight(true) / 2)
+        }, 400, () => {
+            animateCardThumbMovement(cardIndex, moveToId, callback);
+        });
+    } else {
+        animateCardThumbMovement(cardIndex, moveToId, callback);
+    }
+}
+
+function animateCardThumbMovement(cardIndex, moveToId, callback) {
+    const cardThumb = $(`#deck-modal-cards .hand-card-thumb[data-idx="${cardIndex}"]`);
+    cardThumb[0].style.visibility = 'hidden';
+    const cloneRect = cardThumb[0].getBoundingClientRect();
+    const $clone = $(`
+        <img id="card-clone" src="${cardThumb.attr("src")}" class="hand-card-thumb" style="position:fixed; left:${cloneRect.left}px; top:${cloneRect.top}px; z-index:2000;">
+    `).appendTo('body');
+
+    const targetRect = $(moveToId)[0].getBoundingClientRect();
+    $clone[0].style.top = `${targetRect.top + (targetRect.height / 2) - (cloneRect.height / 2)}px`;
+    $clone[0].style.left = `${targetRect.left + (targetRect.width / 2) - (cloneRect.width / 2)}px`;
+
+    setTimeout(() => {
+        $clone.addClass('save-card');
+        setTimeout(() => {
+            $clone.remove();
+            if (callback) callback();
+        }, 710);
     }, 10);
 }
 
