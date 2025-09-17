@@ -45,7 +45,7 @@ function bindEvents() {
 // Interaction ---------------------------------------------------------------------------------------------------------
 
 function setInteractionBlocked(isBlocked) {
-    const buttons = $('#deck-nox, #deck-story, #hand-container, #trash-container, #close-deck-modal, #close-card-detail-modal, .btn');
+    const buttons = $('#deck-nox, #deck-story, #hand-container, #trash-container, #close-deck-modal, #close-card-detail-modal, .hand-card-thumb, .btn');
     const flip = $('#main-card-flip, #detail-card-flip');
     const modals = $('#deck-modal, #card-detail-modal');
     if (isBlocked) {
