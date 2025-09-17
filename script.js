@@ -152,7 +152,7 @@ function getCardTypeImage(type) {
 function showCardOptions(card) {
     let html = '';
     card.options.forEach((opt, i) => {
-        html += `<button class="btn card-option-btn mb-3" data-idx="${i}">${opt.text}</button>`;
+        html += `<button class="btn card-option-btn" data-idx="${i}">${opt.text}</button>`;
     });
     $('#options-area').html(html).addClass("mb-4");
     $('#card-area').addClass("mb-4");
@@ -324,7 +324,7 @@ function renderPileHand() {
     })
     currentTypes.forEach(currentType => {
         let type = currentType.type;
-        createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type + currentType.img) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
+        createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type + currentType.img) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn", "#trash-container", '#detail-flip-container', null, () => {
             discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash);
         });
     });
