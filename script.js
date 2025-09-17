@@ -325,8 +325,7 @@ function renderPileHand() {
     currentTypes.forEach(currentType => {
         let type = currentType.type;
         createActionButton("#deck-modal-options", "Descartar aleatoria" + ((type !== "") ? (" " + type + currentType.img) : ""), ((type !== "") ? (type + "-") : "") + "pile-discard-random-btn", "discard-card-btn mb-3", "#trash-container", '#detail-flip-container', null, () => {
-            discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash)
-            renderPileHand();
+            discardCardRandom(hand, type, ObtainingMethod.FromHandToTrash);
         });
     });
 }
@@ -456,11 +455,9 @@ function animateCardMovement(card, moveToId, cardAreaId, callback) {
     $clone[0].style.top = `${targetRect.top + (targetRect.height / 2) - (cloneRect.height / 2)}px`;
     $clone[0].style.left = `${targetRect.left + (targetRect.width / 2) - (cloneRect.width / 2)}px`;
 
-    setInteractionBlocked(true);
     setTimeout(() => {
         $clone.addClass('save-card');
         setTimeout(() => {
-            setInteractionBlocked(false);
             $clone.remove();
             if (callback) callback();
         }, 710);
@@ -482,11 +479,9 @@ function animateCardThumbMovementScroll(cardIndex, moveToId, callback) {
     let thumbBottom = thumbTop + cardThumb.outerHeight(true);
 
     if (thumbTop < containerTop || thumbBottom > containerBottom) {
-        setInteractionBlocked(true);
         container.animate({
             scrollTop: thumbTop - (container.height() / 2) + (cardThumb.outerHeight(true) / 2)
         }, 400, () => {
-            setInteractionBlocked(false);
             animateCardThumbMovement(cardIndex, moveToId, callback);
         });
     } else {
@@ -506,11 +501,9 @@ function animateCardThumbMovement(cardIndex, moveToId, callback) {
     $clone[0].style.top = `${targetRect.top + (targetRect.height / 2) - (cloneRect.height / 2)}px`;
     $clone[0].style.left = `${targetRect.left + (targetRect.width / 2) - (cloneRect.width / 2)}px`;
 
-    setInteractionBlocked(true);
     setTimeout(() => {
         $clone.addClass('save-card');
         setTimeout(() => {
-            setInteractionBlocked(false);
             $clone.remove();
             if (callback) callback();
         }, 710);
