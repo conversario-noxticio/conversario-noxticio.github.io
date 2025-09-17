@@ -86,7 +86,9 @@ function drawCardRandom(deck) {
             </div>
         </div>
     `).appendTo('#card-area');
-    
+
+    setInteractionBlocked(true);
+    setInteractionBlocked(false);
     setTimeout(() => {
         $('#card-area').html($clone.clone().removeClass('draw-card'));
         $clone.remove();
@@ -98,7 +100,11 @@ function drawCardRandom(deck) {
         isCardFlipped = !isCardFlipped;
         $(this).toggleClass('flipped');
         if (isCardFlipped && !areCardOptionsShown) {
-            setTimeout(() => showCardOptions(card), 400);
+            setInteractionBlocked(true);
+            setTimeout(() => {
+                setInteractionBlocked(false);
+                showCardOptions(card);
+            }, 400);
             areCardOptionsShown = true;
         }
     });
@@ -113,7 +119,9 @@ function discardCardRandom(deck, type, obtainingMethod) {
     const cardFilteredIndex = Math.floor(Math.random() * deckFiltered.length);
     const card = deckFiltered[cardFilteredIndex];
     const deckIndex = deck.findIndex(c => c.index === card.index);
+    setInteractionBlocked(true);
     animateCardThumbMovementScroll(cardFilteredIndex, "#trash-container", () => {
+        setInteractionBlocked(false);
         addToTrash(deck[deckIndex], null, obtainingMethod);
         removeFromPile(hand, card, "#hand-count");
         renderPileHand();
@@ -167,7 +175,9 @@ function chooseOption(card, optIdx) {
     scrollDown();
     [200, 400, 600].forEach(t => setTimeout(scrollDown, t));
 
-    animateTypeWriter('#info-area', opt.info, 1000, () => {
+    setInteractionBlocked(true);
+    animateTypeWriter('#info-area', opt.info, 800, () => {
+        setInteractionBlocked(false);
         scrollDown();
         handleOptionOutcome(card, opt, optIdx);
     });
@@ -204,9 +214,9 @@ function createActionButton(areaId, label, btnId, btnClass, moveToId, cardAreaId
             scrollUp();
             setTimeout(() => {
                 animateCardMovement(card, moveToId, cardAreaId, () => {
+                    setInteractionBlocked(false);
                     action();
                     resetAreas();
-                    setInteractionBlocked(false);
                 });
             }, isScrollUpPending() ? 700 : 0);
         } else {
@@ -427,7 +437,7 @@ function scrollUp() {
 
 // Card anim -----------------------------------------------------------------------------------------------------------
 
-function animateCardMovement(card, moveToId, cardAreaId, cb) {
+function animateCardMovement(card, moveToId, cardAreaId, callback) {
     let container = $('.card-flip-container');
     container[0].style.visibility = 'hidden';
     let cardArea = $(cardAreaId);
@@ -446,9 +456,14 @@ function animateCardMovement(card, moveToId, cardAreaId, cb) {
     $clone[0].style.top = `${targetRect.top + (targetRect.height / 2) - (cloneRect.height / 2)}px`;
     $clone[0].style.left = `${targetRect.left + (targetRect.width / 2) - (cloneRect.width / 2)}px`;
 
+    setInteractionBlocked(true);
     setTimeout(() => {
         $clone.addClass('save-card');
-        setTimeout(() => { $clone.remove(); if (cb) cb(); }, 710);
+        setTimeout(() => {
+            setInteractionBlocked(false);
+            $clone.remove();
+            if (callback) callback();
+        }, 710);
     }, 10);
 }
 
@@ -467,9 +482,11 @@ function animateCardThumbMovementScroll(cardIndex, moveToId, callback) {
     let thumbBottom = thumbTop + cardThumb.outerHeight(true);
 
     if (thumbTop < containerTop || thumbBottom > containerBottom) {
+        setInteractionBlocked(true);
         container.animate({
             scrollTop: thumbTop - (container.height() / 2) + (cardThumb.outerHeight(true) / 2)
         }, 400, () => {
+            setInteractionBlocked(false);
             animateCardThumbMovement(cardIndex, moveToId, callback);
         });
     } else {
@@ -489,9 +506,11 @@ function animateCardThumbMovement(cardIndex, moveToId, callback) {
     $clone[0].style.top = `${targetRect.top + (targetRect.height / 2) - (cloneRect.height / 2)}px`;
     $clone[0].style.left = `${targetRect.left + (targetRect.width / 2) - (cloneRect.width / 2)}px`;
 
+    setInteractionBlocked(true);
     setTimeout(() => {
         $clone.addClass('save-card');
         setTimeout(() => {
+            setInteractionBlocked(false);
             $clone.remove();
             if (callback) callback();
         }, 710);
@@ -512,6 +531,7 @@ function showDice(opt, card, optIdx) {
     `).addClass("mb-4");
 
     scrollDown();
+    setInteractionBlocked(true);
     setTimeout(() => {
         let diceImg = $('#dice-img');
         let diceResult = $('#dice-result');
@@ -521,7 +541,10 @@ function showDice(opt, card, optIdx) {
             diceResult.text(diceValue);
             diceImg.addClass('reveal-move');
             diceResult.addClass('reveal-move');
-            setTimeout(() => showStoreDiscardButtons(card, opt, optIdx), 900);
+            setTimeout(() => {
+                setInteractionBlocked(false);
+                showStoreDiscardButtons(card, opt, optIdx);
+            }, 900);
         }, 810);
     }, isScrollDownPending() ? 400 : 0);
 }
@@ -537,6 +560,7 @@ function showCoin(opt, card, optIdx) {
     `).addClass("mb-4");
 
     scrollDown();
+    setInteractionBlocked(true);
     setTimeout(() => {
         let coinImg = $('#coin-img');
         let coinResult = $('#coin-result');
@@ -546,7 +570,10 @@ function showCoin(opt, card, optIdx) {
             coinResult.text(coinValue);
             coinImg.addClass('reveal-move');
             coinResult.addClass('reveal-move');
-            setTimeout(() => showStoreDiscardButtons(card, opt, optIdx), 900);
+            setTimeout(() => {
+                setInteractionBlocked(false);
+                showStoreDiscardButtons(card, opt, optIdx);
+            }, 900);
         }, 1010);
     }, isScrollDownPending() ? 400 : 0);
 }
