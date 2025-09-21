@@ -184,22 +184,26 @@ function chooseOption(card, optIdx) {
 }
 
 function handleOptionOutcome(card, opt, optIdx) {
-    if (opt.dice) {
-        showDice(opt, card, optIdx);
-    } else if (opt.coin) {
-        showCoin(opt, card, optIdx);
-    } else {
-        showStoreDiscardButtons(card, opt, optIdx);
-    }
-}
+    const handleOptionOutcomeButtons = () => {
+        if (opt.save) {
+            createActionButton("#final-options-area", "Guardar en tu mano", "main-save-card-btn", "save-card-btn", "#hand-container", '#card-area', card, () => {
+                addToHand(card, optIdx, ObtainingMethod.FromPlayToHand);
+            });
+        }
+        if (opt.discard) {
+            createActionButton("#final-options-area", "Descartar", "main-discard-card-btn", "discard-card-btn", "#trash-container", '#card-area', card, () => {
+                addToTrash(card, optIdx, ObtainingMethod.FromPlayToTrash);
+            });
+        }
+    };
 
-function showStoreDiscardButtons(card, opt, optIdx) {
-    createActionButton("#final-options-area", "Guardar en tu mano", "main-save-card-btn", "save-card-btn", "#hand-container", '#card-area', card, () => {
-        addToHand(card, optIdx, ObtainingMethod.FromPlayToHand);
-    });
-    createActionButton("#final-options-area", "Descartar", "main-discard-card-btn", "discard-card-btn", "#trash-container", '#card-area', card, () => {
-        addToTrash(card, optIdx, ObtainingMethod.FromPlayToTrash);
-    });
+    if (opt.dice) {
+        showDice(opt, card, optIdx, handleOptionOutcomeButtons);
+    } else if (opt.coin) {
+        showCoin(opt, card, optIdx, handleOptionOutcomeButtons);
+    } else {
+        handleOptionOutcomeButtons();
+    }
 }
 
 function createActionButton(areaId, label, btnId, btnClass, moveToId, cardAreaId, card, action) {
@@ -513,7 +517,7 @@ function animateCardThumbMovement(cardIndex, moveToId, callback) {
 
 // Random --------------------------------------------------------------------------------------------------------------
 
-function showDice(opt, card, optIdx) {
+function showDice(opt, card, optIdx, callback) {
     let diceValue = Math.floor(Math.random() * 6) + 1;
     let randomArea = $('#random-area');
     randomArea.html(`
@@ -536,13 +540,13 @@ function showDice(opt, card, optIdx) {
             diceResult.addClass('reveal-move');
             setTimeout(() => {
                 setInteractionBlocked(false);
-                showStoreDiscardButtons(card, opt, optIdx);
+                if (callback) callback();
             }, 900);
         }, 810);
     }, isScrollDownPending() ? 400 : 0);
 }
 
-function showCoin(opt, card, optIdx) {
+function showCoin(opt, card, optIdx, callback) {
     let coinValue = Math.random() < 0.5 ? "CARA" : "CRUZ";
     let randomArea = $('#random-area');
     randomArea.html(`
@@ -565,7 +569,7 @@ function showCoin(opt, card, optIdx) {
             coinResult.addClass('reveal-move');
             setTimeout(() => {
                 setInteractionBlocked(false);
-                showStoreDiscardButtons(card, opt, optIdx);
+                if (callback) callback();
             }, 900);
         }, 1010);
     }, isScrollDownPending() ? 400 : 0);
