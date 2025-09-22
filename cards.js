@@ -30,7 +30,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Mientes",
@@ -42,7 +42,7 @@ const cards = [
                     "aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -62,7 +62,7 @@ const cards = [
                     "el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -87,7 +87,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Escapar",
@@ -97,7 +97,7 @@ const cards = [
                     "carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -152,7 +152,7 @@ const cards = [
                     "y pierdes esta carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -169,7 +169,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Dar una patada",
@@ -177,7 +177,7 @@ const cards = [
                     "Sales del bosque. Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -195,7 +195,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -207,7 +207,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Frasco",
@@ -218,7 +218,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -229,7 +229,7 @@ const cards = [
                     "Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -245,7 +245,7 @@ const cards = [
                     "en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -257,7 +257,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -272,7 +272,7 @@ const cards = [
                     "mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -300,7 +300,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
         ]
     },
@@ -316,7 +316,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -327,7 +327,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Rezar",
@@ -336,7 +336,7 @@ const cards = [
                     "entre las aguas.  Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -347,7 +347,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -364,7 +364,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Llevarte el libro",
@@ -374,7 +374,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -392,7 +392,7 @@ const cards = [
                     "en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -402,7 +402,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -416,7 +416,7 @@ const cards = [
                     "Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -427,7 +427,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -444,7 +444,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -455,7 +455,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -490,7 +490,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -502,7 +502,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -520,7 +520,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Beber",
@@ -533,7 +533,7 @@ const cards = [
                     "carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -549,7 +549,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Retroceder",
@@ -559,7 +559,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Correr",
@@ -568,7 +568,7 @@ const cards = [
                     "Deja la carta aleatoria y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -578,7 +578,7 @@ const cards = [
                     "Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -598,7 +598,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Ir hacia la oscuridad",
@@ -608,7 +608,7 @@ const cards = [
                     "¿Era todo un sueño? Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -627,7 +627,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Te marchas",
@@ -638,7 +638,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -654,7 +654,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Te resistes",
@@ -663,7 +663,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -690,7 +690,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -699,7 +699,7 @@ const cards = [
                     "Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -711,7 +711,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -730,7 +730,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Rechazar la invitación",
@@ -740,7 +740,7 @@ const cards = [
                     "Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -759,7 +759,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Observarlo desde el exterior",
@@ -772,7 +772,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -791,7 +791,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Dejarla cerrada",
@@ -800,7 +800,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -818,7 +818,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -830,7 +830,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -845,7 +845,7 @@ const cards = [
                     "algo importante. Pierdes la carta. Déjala en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -861,7 +861,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -878,7 +878,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Seguirle",
@@ -889,7 +889,7 @@ const cards = [
                     "el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -907,7 +907,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Tu castillo se ha derrumbado",
@@ -918,7 +918,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -930,7 +930,7 @@ const cards = [
             {
                 text: "Aceptar",
                 info: "Pierdes una carta a elegir de tu mano. A cambio te quedas esta carta y la bendición del " +
-                    "vagabundo.Obtienes la carta. Guárdala en tu mano y descarta otra, si no tienes ninguna " +
+                    "vagabundo. Obtienes la carta. Guárdala en tu mano y descarta otra, si no tienes ninguna " +
                     "pierdes esta. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
@@ -945,7 +945,7 @@ const cards = [
                     "Deja la carta aleatoria y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -955,7 +955,7 @@ const cards = [
                     "de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -965,7 +965,7 @@ const cards = [
                     "cartas aleatorias y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -983,7 +983,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Huyes",
@@ -994,7 +994,7 @@ const cards = [
                     "esta carta. Deja las cartas aleatorias y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1011,7 +1011,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Enfrentarlos",
@@ -1020,7 +1020,7 @@ const cards = [
                     "Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1037,7 +1037,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Huir",
@@ -1055,7 +1055,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1075,7 +1075,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Consumir",
@@ -1086,7 +1086,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Instinto",
@@ -1095,7 +1095,7 @@ const cards = [
                     "el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1104,7 +1104,7 @@ const cards = [
                     "Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1123,7 +1123,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1152,7 +1152,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1165,7 +1165,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1181,7 +1181,7 @@ const cards = [
                     "de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1191,7 +1191,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1217,7 +1217,7 @@ const cards = [
                     "mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1234,7 +1234,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
         ]
     },
@@ -1249,7 +1249,7 @@ const cards = [
                     "y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1260,7 +1260,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1276,7 +1276,7 @@ const cards = [
                     "mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1289,7 +1289,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1305,7 +1305,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1317,7 +1317,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1334,7 +1334,7 @@ const cards = [
                     "destartalada. Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1346,7 +1346,7 @@ const cards = [
                     "carta. Deja la carta aleatoria y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1360,7 +1360,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Huir",
@@ -1373,7 +1373,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1388,7 +1388,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1398,7 +1398,7 @@ const cards = [
                     "Déjala en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1410,7 +1410,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Rompes el pentagrama",
@@ -1420,7 +1420,7 @@ const cards = [
                     "carta aleatoria y esta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1436,7 +1436,7 @@ const cards = [
                     "carta. Déjala en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1448,7 +1448,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Van dos",
@@ -1458,7 +1458,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Esqueleto",
@@ -1469,7 +1469,7 @@ const cards = [
                     "sueño. Pierdes la carta. Déjala en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1487,7 +1487,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Dejar ahí",
@@ -1496,7 +1496,7 @@ const cards = [
                     "Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1512,7 +1512,7 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1523,7 +1523,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1537,7 +1537,7 @@ const cards = [
                     "la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1578,7 +1578,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1594,7 +1594,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
@@ -1612,7 +1612,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Dejarlo ahí",
@@ -1620,7 +1620,7 @@ const cards = [
                     "está. Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1637,7 +1637,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             },
             {
                 text: "Seguir tu camino",
@@ -1646,7 +1646,7 @@ const cards = [
                     "Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -1666,7 +1666,7 @@ const cards = [
                     "la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
@@ -1679,7 +1679,7 @@ const cards = [
                 dice: false,
                 coin: false,
                 save: () => { return true; },
-                discard: () => { return true; },
+                discard: () => { return false; },
             }
         ]
     },
