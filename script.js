@@ -6,6 +6,10 @@ let deckStory = [];
 let hand = [];
 let trash = [];
 
+// Random
+let diceResult = 0;
+let coinResult = ""
+
 
 // Init ----------------------------------------------------------------------------------------------------------------
 
@@ -185,12 +189,12 @@ function chooseOption(card, optIdx) {
 
 function handleOptionOutcome(card, opt, optIdx) {
     const handleOptionOutcomeButtons = () => {
-        if (opt.save) {
+        if (opt.save()) {
             createActionButton("#final-options-area", "Guardar en tu mano", "main-save-card-btn", "save-card-btn", "#hand-container", '#card-area', card, () => {
                 addToHand(card, optIdx, ObtainingMethod.FromPlayToHand);
             });
         }
-        if (opt.discard) {
+        if (opt.discard()) {
             createActionButton("#final-options-area", "Descartar", "main-discard-card-btn", "discard-card-btn", "#trash-container", '#card-area', card, () => {
                 addToTrash(card, optIdx, ObtainingMethod.FromPlayToTrash);
             });
@@ -518,7 +522,7 @@ function animateCardThumbMovement(cardIndex, moveToId, callback) {
 // Random --------------------------------------------------------------------------------------------------------------
 
 function showDice(opt, card, optIdx, callback) {
-    let diceValue = Math.floor(Math.random() * 6) + 1;
+    diceResult = Math.floor(Math.random() * 6) + 1;
     let randomArea = $('#random-area');
     randomArea.html(`
       <div class="result-reveal-container">
@@ -535,7 +539,7 @@ function showDice(opt, card, optIdx, callback) {
         diceImg.addClass('dice-anim');
         setTimeout(() => {
             diceImg.removeClass('dice-anim');
-            diceResult.text(diceValue);
+            diceResult.text(diceResult);
             diceImg.addClass('reveal-move');
             diceResult.addClass('reveal-move');
             setTimeout(() => {
@@ -547,7 +551,7 @@ function showDice(opt, card, optIdx, callback) {
 }
 
 function showCoin(opt, card, optIdx, callback) {
-    let coinValue = Math.random() < 0.5 ? "CARA" : "CRUZ";
+    coinResult = Math.random() < 0.5 ? "CARA" : "CRUZ";
     let randomArea = $('#random-area');
     randomArea.html(`
       <div class="result-reveal-container">
@@ -564,7 +568,7 @@ function showCoin(opt, card, optIdx, callback) {
         coinImg.addClass('coin-anim');
         setTimeout(() => {
             coinImg.removeClass('coin-anim');
-            coinResult.text(coinValue);
+            coinResult.text(coinResult);
             coinImg.addClass('reveal-move');
             coinResult.addClass('reveal-move');
             setTimeout(() => {
