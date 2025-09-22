@@ -535,13 +535,13 @@ function showDice(opt, card, optIdx, callback) {
     setInteractionBlocked(true);
     setTimeout(() => {
         let diceImg = $('#dice-img');
-        let diceResult = $('#dice-result');
+        let diceResultElement = $('#dice-result');
         diceImg.addClass('dice-anim');
         setTimeout(() => {
             diceImg.removeClass('dice-anim');
-            diceResult.text(diceResult);
+            diceResultElement.text(diceResult);
             diceImg.addClass('reveal-move');
-            diceResult.addClass('reveal-move');
+            diceResultElement.addClass('reveal-move');
             setTimeout(() => {
                 setInteractionBlocked(false);
                 if (callback) callback();
@@ -564,13 +564,13 @@ function showCoin(opt, card, optIdx, callback) {
     setInteractionBlocked(true);
     setTimeout(() => {
         let coinImg = $('#coin-img');
-        let coinResult = $('#coin-result');
+        let coinResultElement = $('#coin-result');
         coinImg.addClass('coin-anim');
         setTimeout(() => {
             coinImg.removeClass('coin-anim');
-            coinResult.text(coinResult);
+            coinResultElement.text(coinResult);
             coinImg.addClass('reveal-move');
-            coinResult.addClass('reveal-move');
+            coinResultElement.addClass('reveal-move');
             setTimeout(() => {
                 setInteractionBlocked(false);
                 if (callback) callback();
