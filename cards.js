@@ -74,8 +74,8 @@ const cards = [
                     "descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: true,
-                save: () => { return true; },
-                discard: () => { return true; },
+                save: () => { return coinResult === "CARA"; },
+                discard: () => { return coinResult !== "CARA"; },
             },
             {
                 text: "Engañar",
@@ -120,11 +120,10 @@ const cards = [
                 text: "Huir",
                 info: "Lanza una moneda. Cara: Pierdes dos cartas Nox al azar de tu mano. " +
                     "Deja las cartas en el mazo de descarte. Y continúas tu aventura donde estabas. " +
-                    "Cruz: Vuelve a sacar una carta de evento. Deja la carta en el mazo de descarte. " +
-                    "Y sacas unas nueva carta de evento.",
+                    "Cruz: Vuelve a sacar una carta de evento. Deja la carta en el mazo de descarte.",
                 dice: false,
                 coin: true,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             }
         ]
@@ -474,8 +473,8 @@ const cards = [
                     "Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: true,
-                save: () => { return true; },
-                discard: () => { return true; },
+                save: () => { return coinResult === "CARA"; },
+                discard: () => { return coinResult !== "CARA"; },
             }
         ]
     },
@@ -1568,7 +1567,7 @@ const cards = [
                     "descarte. Y continúas tu aventura donde estabas.",
                 dice: false,
                 coin: true,
-                save: () => { return true; },
+                save: () => { return false; },
                 discard: () => { return true; },
             },
             {
