@@ -113,8 +113,8 @@ const cards = [
                     "Continúas tu aventura donde estabas.",
                 dice: false,
                 coin: false,
-                save: () => { return true; },
-                discard: () => { return true; },
+                save: () => { return hand.filter(c => c.type === CardType.Ataque).length > 0; },
+                discard: () => { return hand.filter(c => c.type === CardType.Ataque).length <= 0; },
             },
             {
                 text: "Huir",
