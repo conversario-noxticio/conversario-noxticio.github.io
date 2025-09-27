@@ -72,7 +72,7 @@ function drawCardRandom(deck) {
     if (deck.length === 0) return;
 
     $('#deck-nox, #deck-story').hide();
-    $('#card-area, #options-area, #info-area, #random-area, #final-options-area').empty().removeClass("mb-4");
+    $('#card-area, #options-area, #info-area, #random-area, #final-options-area').empty().removeClass("mb-5");
 
     let idx = Math.floor(Math.random() * deck.length);
     let card = deck[idx];
@@ -158,8 +158,8 @@ function showCardOptions(card) {
     card.options.forEach((opt, i) => {
         html += `<button class="btn card-option-btn" data-idx="${i}">${opt.text}</button>`;
     });
-    $('#options-area').html(html).addClass("mb-4");
-    $('#card-area').addClass("mb-4");
+    $('#options-area').html(html).addClass("mb-5");
+    $('#card-area').addClass("mb-5");
 
     scrollDown();
 
@@ -170,8 +170,8 @@ function showCardOptions(card) {
 }
 
 function chooseOption(card, optIdx) {
-    $('#options-area').empty().removeClass("mb-4");
-    $('#info-area').addClass("mb-4");
+    $('#options-area').empty().removeClass("mb-5");
+    $('#info-area').addClass("mb-5");
 
     let opt = card.options[optIdx];
     card._chosenOption = optIdx;
@@ -303,7 +303,7 @@ function closeDeckModal() {
 }
 
 function renderPileNox() {
-    renderPile(deckNox, "Mazo NOX", "nox-modal-title");
+    renderPile(deckNox, "Mazo de evento", "nox-modal-title");
     if (deckNox.length > 0) {
         createActionButton("#deck-modal-options", "Sacar aleatoria", "pile-random-btn", "save-card-btn", "#trash-container", '#detail-flip-container', null, () => {
             drawCardRandom(deckNox)
@@ -529,7 +529,7 @@ function showDice(opt, card, optIdx, callback) {
         <img src="images/random/dice.png" alt="Dado" id="dice-img" class="result-img">
         <span id="dice-result" class="fs-4 result-value"></span>
       </div>
-    `).addClass("mb-4");
+    `).addClass("mb-5");
 
     scrollDown();
     setInteractionBlocked(true);
@@ -558,7 +558,7 @@ function showCoin(opt, card, optIdx, callback) {
         <img src="images/random/coin.png" alt="Moneda" id="coin-img" class="result-img">
         <span id="coin-result" class="fs-4 result-value"></span>
       </div>
-    `).addClass("mb-4");
+    `).addClass("mb-5");
 
     scrollDown();
     setInteractionBlocked(true);

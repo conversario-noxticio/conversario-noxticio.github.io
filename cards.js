@@ -8,10 +8,10 @@ const CardType = {
 };
 
 const ObtainingMethod = {
-    FromNox: 'Obtenida directamente del mazo NOX',
+    FromNox: 'Obtenida directamente del mazo de evento',
     FromStory: 'Obtenida directamente del mazo de historia',
-    FromPlayToHand: 'Obtenida jugándola del mazo NOX',
-    FromPlayToTrash: 'Descartada jugándola del mazo NOX',
+    FromPlayToHand: 'Obtenida jugándola del mazo de evento',
+    FromPlayToTrash: 'Descartada jugándola del mazo de evento',
     FromHandToTrash: 'Descartada desde tu mano',
     FromTrashToHand: 'Recuperada de los descartes',
 };
