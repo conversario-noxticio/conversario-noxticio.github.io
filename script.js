@@ -124,7 +124,7 @@ function discardCardRandom(deck, type, obtainingMethod) {
     const card = deckFiltered[cardFilteredIndex];
     const deckIndex = deck.findIndex(c => c.index === card.index);
     setInteractionBlocked(true);
-    animateCardThumbMovementScroll(cardFilteredIndex, "#trash-container", () => {
+    animateCardThumbMovementScroll(deckIndex, "#trash-container", () => {
         setInteractionBlocked(false);
         addToTrash(deck[deckIndex], null, obtainingMethod);
         removeFromPile(hand, card, "#hand-count");
