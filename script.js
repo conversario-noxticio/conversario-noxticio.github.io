@@ -413,11 +413,17 @@ function animateTypeWriter(selector, text, duration, callback) {
     let total = words.length;
     let delay = duration / total;
     $(selector).text('');
-    let i = 0;
+    let n = 0;
+    let b = false;
+    let i = false;
     function nextWord() {
-        if (i < total) {
-            $(selector).append(words[i] + ' ');
-            i++;
+        if (n < total) {
+            if (words[n] === "<b>") b = true;
+            else if (words[n] === "</b>") b = false;
+            else if (words[n] === "<i>") i = true;
+            else if (words[n] === "</i>") i = false;
+            else $(selector).append((b ? "<b>" : "") + (i ? "<i>" : "") + words[n] + (b ? "</b> " : " ") + (i ? "</i> " : " "));
+            n++;
             setTimeout(nextWord, delay);
         } else if (callback) callback();
     }

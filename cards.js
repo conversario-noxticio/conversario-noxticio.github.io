@@ -25,8 +25,8 @@ const cards = [
                 text: "Te sinceras",
                 info: "Le cuentas sobre tu investigación y compartes con ellos tus inquietudes. El Comandante de la " +
                     "guardia, agradecido por tu sinceridad simpatiza con tu noble misión y te ofrece escolta " +
-                    "mientras descansas y un amuleto para que lo lleves en tu aventura. Obtienes la carta. " +
-                    "Guárdala en tu mano. Y continúas tu aventura donde estabas.",
+                    "mientras descansas y un amuleto para que lo lleves en tu aventura. <b> Obtienes la carta. </b> " +
+                    "<i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
