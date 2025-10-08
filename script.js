@@ -373,7 +373,7 @@ function openCardDetailModal(cardObj) {
     if (cardObj.obtainingMethod === ObtainingMethod.FromPlayToHand || cardObj.obtainingMethod === ObtainingMethod.FromPlayToTrash) {
         let opt = optIndex !== null ? card.options[optIndex] : null;
         $('#card-detail-option').html(`<b>Elegiste</b>: ${opt ? opt.text : ''}`);
-        $('#card-detail-info').text(opt ? opt.info : '');
+        $('#card-detail-info').html(opt ? opt.info : '');
     }
 
     if (hand.find(c => c.index === cardObj.index)) {

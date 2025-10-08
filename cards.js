@@ -38,8 +38,8 @@ const cards = [
                     "que está de viaje de vuelta de una batalla. El comandante ve en tu mirada que se trata de una " +
                     "vil mentira. Encolerizado, tira de las riendas de su caballo y guía a su guardia a pasar por " +
                     "encima de ti dejándote tendido en el suelo aturdido, a tu suerte. Continúas tu aventura con " +
-                    "graves dolencias. No obtienes la carta. Deja la carta en el mazo de descarte. Y continúas tu " +
-                    "aventura donde estabas.",
+                    "graves dolencias. <b> No obtienes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu " +
+                    "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
