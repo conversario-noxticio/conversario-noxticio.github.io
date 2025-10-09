@@ -109,8 +109,8 @@ const cards = [
             {
                 text: "Pelear",
                 info: "Si tienes una carta de ataque en tu mano obtienes la carta, sino déjala en el mazo de " +
-                    "descarte. Obtienes la carta si tienes una carta de ataque en tu mano. Sino descártala. " +
-                    "Continúas tu aventura donde estabas.",
+                    "descarte. <br> <b> Obtienes la carta si tienes una carta de ataque en tu mano. Sino descártala. </b> " +
+                    "<i> Continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return hand.filter(c => c.type === CardType.Ataque).length > 0; },
@@ -118,9 +118,9 @@ const cards = [
             },
             {
                 text: "Huir",
-                info: "Lanza una moneda. Cara: Pierdes dos cartas Nox al azar de tu mano. " +
-                    "Deja las cartas en el mazo de descarte. Y continúas tu aventura donde estabas. " +
-                    "Cruz: Vuelve a sacar una carta de evento. Deja la carta en el mazo de descarte.",
+                info: "Lanza una moneda. <br> <b> Cara: </b> Pierdes dos cartas Nox al azar de tu mano. " +
+                    "<i> Deja las cartas en el mazo de descarte. Y continúas tu aventura donde estabas. </i> " +
+                    " <br> <b> Cruz: </b> Vuelve a sacar una carta de evento. <i> Deja la carta en el mazo de descarte. </i>",
                 dice: false,
                 coin: true,
                 save: () => { return false; },
@@ -134,13 +134,13 @@ const cards = [
         options: [
             {
                 text: "Lazar el dado",
-                info: "Si sacas más de un 4, le ganas la apuesta al pirata y te quedas con su botín compuesto por " +
+                info: "<b> Si sacas más de un 4 </b> , le ganas la apuesta al pirata y te quedas con su botín compuesto por " +
                     "baratijas que le ha robado a otros aventureros. En el botín encuentras unos dados malditos que " +
                     "pueden cambiar el rumbo de tu aventura: Si pierdes una carta puedes recuperarla " +
-                    "intercambiándola por esta. Guárdala en tu mano. Y continúas tu aventura donde estabas. " +
-                    "Si sacas menos de 4, los bandidos te saquean, se ríen de ti y te arrancan parte de la ropa. " +
-                    "El pirata te quita de tu mano el número de cartas que haya salido en el dado. Deja las cartas  " +
-                    "en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                    "intercambiándola por esta. <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i> " +
+                    "<br> <b> Si sacas menos de 4 </b> , los bandidos te saquean, se ríen de ti y te arrancan parte de la ropa. " +
+                    "El pirata te quita de tu mano el número de cartas que haya salido en el dado. <i> Deja las cartas  " +
+                    "en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: true,
                 coin: false,
                 save: () => { return diceResult >= 4; },
@@ -148,8 +148,8 @@ const cards = [
             },
             {
                 text: "Huir",
-                info: "Si decides huír sin apostar, toda la masa se ríe de ti. Pierdes reputación en otros puertos " +
-                    "y pierdes esta carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                info: "<b> Si decides huír sin apostar </b> , toda la masa se ríe de ti. Pierdes reputación en otros puertos " +
+                    "y pierdes esta carta. <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -164,8 +164,8 @@ const cards = [
             {
                 text: "Mover la piedra",
                 info: "Un espíritu sale de la piedra y te da la espada de Elduara. Un arma ancestral que te " +
-                    "protegerá de algunos peligros. Obtienes la carta. Guárdala en tu mano. Y continúas tu " +
-                    "aventura donde estabas.",
+                    "protegerá de algunos peligros. <br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu " +
+                    "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -174,7 +174,7 @@ const cards = [
             {
                 text: "Dar una patada",
                 info: "Un espíritu enfadado sale y te lanza una maldición mientras escuchas: \"Respeta a tus mayores\". " +
-                    "Sales del bosque. Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                    "Sales del bosque. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
