@@ -25,7 +25,7 @@ const cards = [
                 text: "Te sinceras",
                 info: "Le cuentas sobre tu investigación y compartes con ellos tus inquietudes. El Comandante de la " +
                     "guardia, agradecido por tu sinceridad simpatiza con tu noble misión y te ofrece escolta " +
-                    "mientras descansas y un amuleto para que lo lleves en tu aventura. <b> Obtienes la carta. </b> " +
+                    "mientras descansas y un amuleto para que lo lleves en tu aventura. <br> <b> Obtienes la carta. </b> " +
                     "<i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -38,7 +38,7 @@ const cards = [
                     "que está de viaje de vuelta de una batalla. El comandante ve en tu mirada que se trata de una " +
                     "vil mentira. Encolerizado, tira de las riendas de su caballo y guía a su guardia a pasar por " +
                     "encima de ti dejándote tendido en el suelo aturdido, a tu suerte. Continúas tu aventura con " +
-                    "graves dolencias. <b> No obtienes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu " +
+                    "graves dolencias. <br> <b> No obtienes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu " +
                     "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -58,8 +58,8 @@ const cards = [
                     "como si contuviera algo vivo, algo peligroso. A cada golpe, el martillo te quema la piel, " +
                     "pero la euforia crece. Te fundes con el ritmo, en una danza demoníaca de chispas y sudor. " +
                     "Al terminar, el herrero contempla la hoja con orgullo, te lanza una sonrisa ardiente... " +
-                    "y desaparece. Pierdes una carta aleatoria de tu mano. Deja esta carta y otra de tu mano en " +
-                    "el mazo de descarte. Y continúas tu aventura donde estabas.",
+                    "y desaparece. <br> <b> Pierdes una carta aleatoria de tu mano. </b> <i> Deja esta carta y otra de tu mano en " +
+                    "el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -69,9 +69,9 @@ const cards = [
                 text: "Retar",
                 info: "Lo miras desafiante. Le propones una competencia, quien forje la espada más brillante, gana. " +
                     "Su risa es una carcajada desencajada. Gana el que forje con más fulgor... y el perdedor deberá " +
-                    "un favor con gran fervor. El fuego se aviva. Lanza una moneda: Cara: ganas. Guárda la carta en " +
-                    "tu mano. Y continúas tu aventura donde estabas. Cruz: pierdes. Deja la carta en el mazo de " +
-                    "descarte. Y continúas tu aventura donde estabas.",
+                    "un favor con gran fervor. El fuego se aviva. Lanza una moneda: <br> <b> Cara: ganas. </b> <i> Guárda la carta en " +
+                    "tu mano. Y continúas tu aventura donde estabas. </i> <br> <b> Cruz: pierdes. </b> <i> Deja la carta en el mazo de " +
+                    "descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: true,
                 save: () => { return coinResult === "CARA"; },
@@ -82,8 +82,8 @@ const cards = [
                 info: "Aceptas su propuesta y finges trabajar junto a él. El calor es insoportable, y el espíritu " +
                     "parece disfrutar del sufrimiento. En un descuido, agarras la hoja al rojo vivo y huyes con " +
                     "ella entre las llamas. El grito que lanza detrás de ti no parece humano, pero ya es tarde. " +
-                    "Escapas ardiendo, pero con el botín. Obtienes la carta. Guárdala en tu mano. Y continúas tu " +
-                    "aventura donde estabas.",
+                    "Escapas ardiendo, pero con el botín. <br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu " +
+                    "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -93,8 +93,8 @@ const cards = [
                 text: "Escapar",
                 info: "La visión te supera. El calor, la mirada del espíritu, las llamas... todo es demasiado. " +
                     "Das media vuelta y corres como puedes entre el fuego. Él te observa alejarte y solo suelta una " +
-                    "risa cavernosa antes de volver a golpear el yunque. No ocurre nada. Sigues tu camino. Deja la " +
-                    "carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                    "risa cavernosa antes de volver a golpear el yunque. <br> <b> No ocurre nada. Sigues tu camino. </b> <i> Deja la " +
+                    "carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
