@@ -25,7 +25,7 @@ const cards = [
                 text: "Te sinceras",
                 info: "Le cuentas sobre tu investigación y compartes con ellos tus inquietudes. El Comandante de la " +
                     "guardia, agradecido por tu sinceridad simpatiza con tu noble misión y te ofrece escolta " +
-                    "mientras descansas y un amuleto para que lo lleves en tu aventura. <br> <b> Obtienes la carta. </b> " +
+                    "mientras descansas y un amuleto para que lo lleves en tu aventura. <b> Obtienes la carta. </b> " +
                     "<i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -38,7 +38,7 @@ const cards = [
                     "que está de viaje de vuelta de una batalla. El comandante ve en tu mirada que se trata de una " +
                     "vil mentira. Encolerizado, tira de las riendas de su caballo y guía a su guardia a pasar por " +
                     "encima de ti dejándote tendido en el suelo aturdido, a tu suerte. Continúas tu aventura con " +
-                    "graves dolencias. <br> <b> No obtienes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu " +
+                    "graves dolencias. <b> No obtienes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu " +
                     "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -58,7 +58,7 @@ const cards = [
                     "como si contuviera algo vivo, algo peligroso. A cada golpe, el martillo te quema la piel, " +
                     "pero la euforia crece. Te fundes con el ritmo, en una danza demoníaca de chispas y sudor. " +
                     "Al terminar, el herrero contempla la hoja con orgullo, te lanza una sonrisa ardiente... " +
-                    "y desaparece. <br> <b> Pierdes una carta aleatoria de tu mano. </b> <i> Deja esta carta y otra de tu mano en " +
+                    "y desaparece. <b> Pierdes una carta aleatoria de tu mano. </b> <i> Deja esta carta y otra de tu mano en " +
                     "el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -82,7 +82,7 @@ const cards = [
                 info: "Aceptas su propuesta y finges trabajar junto a él. El calor es insoportable, y el espíritu " +
                     "parece disfrutar del sufrimiento. En un descuido, agarras la hoja al rojo vivo y huyes con " +
                     "ella entre las llamas. El grito que lanza detrás de ti no parece humano, pero ya es tarde. " +
-                    "Escapas ardiendo, pero con el botín. <br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu " +
+                    "Escapas ardiendo, pero con el botín. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu " +
                     "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -93,7 +93,7 @@ const cards = [
                 text: "Escapar",
                 info: "La visión te supera. El calor, la mirada del espíritu, las llamas... todo es demasiado. " +
                     "Das media vuelta y corres como puedes entre el fuego. Él te observa alejarte y solo suelta una " +
-                    "risa cavernosa antes de volver a golpear el yunque. <br> <b> No ocurre nada. Sigues tu camino. </b> <i> Deja la " +
+                    "risa cavernosa antes de volver a golpear el yunque. <b> No ocurre nada. Sigues tu camino. </b> <i> Deja la " +
                     "carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -109,7 +109,7 @@ const cards = [
             {
                 text: "Pelear",
                 info: "Si tienes una carta de ataque en tu mano obtienes la carta, sino déjala en el mazo de " +
-                    "descarte. <br> <b> Obtienes la carta si tienes una carta de ataque en tu mano. Sino descártala. </b> " +
+                    "descarte. <b> Obtienes la carta si tienes una carta de ataque en tu mano. Sino descártala. </b> " +
                     "<i> Continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -164,7 +164,7 @@ const cards = [
             {
                 text: "Mover la piedra",
                 info: "Un espíritu sale de la piedra y te da la espada de Elduara. Un arma ancestral que te " +
-                    "protegerá de algunos peligros. <br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu " +
+                    "protegerá de algunos peligros. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu " +
                     "aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -174,7 +174,7 @@ const cards = [
             {
                 text: "Dar una patada",
                 info: "Un espíritu enfadado sale y te lanza una maldición mientras escuchas: \"Respeta a tus mayores\". " +
-                    "Sales del bosque. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
+                    "Sales del bosque. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -191,7 +191,7 @@ const cards = [
                 info: "El mercader te entrega el amuleto sin emoción alguna. Al colocártelo, sientes un leve hormigueo, " +
                     "pero al mirar al mercader, notas que ha desaparecido, dejando el carro y el caballo vacíos. " +
                     "Cuando te lo quitas, el hormigueo se convierte en un peso insoportable que te recuerda las " +
-                    "decisiones que no tomaste. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "decisiones que no tomaste. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
                     "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -203,7 +203,7 @@ const cards = [
                 info: "El mercader sonríe por primera vez mientras coloca la daga en tus manos. " +
                     "Un frío inquietante recorre tu cuerpo, como si un pacto invisible se sellara entre ambos. " +
                     "\"Úsala bien... o no la uses en absoluto\" dice, antes de desaparecer con su carro. " +
-                    "<br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
+                    "<b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -214,7 +214,7 @@ const cards = [
                 info: "El mercader te observa fijamente mientras tomas el frasco. Al beber el líquido, " +
                     "un fuego intenso recorre tus venas. El mercader, sin cambiar de expresión, murmura " +
                     "\"El fuego consume todo, incluso las esperanzas.\" De pronto, todo su carro se desvanece " +
-                    "como humo, dejándote solo en la oscuridad. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "como humo, dejándote solo en la oscuridad. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
                     "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -226,7 +226,7 @@ const cards = [
                 info: "El mercader guarda sus objetos en silencio, pero su mirada cargada de reproche te sigue " +
                     "incluso cuando te das la vuelta. \"Siempre hay un precio, aunque no lo pagues\" dice antes " +
                     "de desaparecer. La sensación de haber perdido algo importante te acompaña el resto de tu viaje. " +
-                    "<br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
+                    "<b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -241,7 +241,7 @@ const cards = [
             {
                 text: "Resistir",
                 info: "El apóstol peregrino nota que te resistes, te considera un enemigo y decide atacarte. " +
-                    "<br> <b> Pierdes una carta aleatoria de tu mano y también esta carta. </b> <i> Deja la carta aleatoria y esta " +
+                    "<b> Pierdes una carta aleatoria de tu mano y también esta carta. </b> <i> Deja la carta aleatoria y esta " +
                     "en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -252,7 +252,7 @@ const cards = [
                 text: "Entregarte",
                 info: "La figura te guía hacia la salida de ese paraje oscuro y te cuenta sobre un amuleto que se " +
                     "encuentra en estas tierras. Al encontrarte sin amparo, el apóstol peregrino decide acerte " +
-                    "entrega del amuleto, pues considera que puede hacerte bien. <br> <b> Obtienes la carta. </b> <i> Guárdala en " +
+                    "entrega del amuleto, pues considera que puede hacerte bien. <b> Obtienes la carta. </b> <i> Guárdala en " +
                     "tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -268,7 +268,7 @@ const cards = [
             {
                 text: "Nada",
                 info: "La anciana se ríe a carcajadas y se marcha pronunciando palabras incognoscibles. " +
-                    "No ocurre nada. Eso era lo que querías, ¿o no? <br> <b> Pierdes la carta. </b> <i> Deja la carta en el " +
+                    "No ocurre nada. Eso era lo que querías, ¿o no? <b> Pierdes la carta. </b> <i> Deja la carta en el " +
                     "mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -312,7 +312,7 @@ const cards = [
                 text: "Huir",
                 info: "Pataleas hasta encontrar un borde firme. Sales del agua jadeando. " +
                     "Pero al ponerte en pie, sientes que algo dentro de ti late con un ritmo ajeno. " +
-                    "No sabes qué es y no sabes si se irá. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "No sabes qué es y no sabes si se irá. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
                     "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -323,7 +323,7 @@ const cards = [
                 text: "Pescar",
                 info: "Hundes la mano en el agua con decisión. Algo muerde. Tiras, y la criatura emerge " +
                     "retorciéndose, aún viva pese a su estado. Te mira sin ojos. No sabes si la has sacado tú o " +
-                    "si se ha dejado atrapar. <br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
+                    "si se ha dejado atrapar. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -333,7 +333,7 @@ const cards = [
                 text: "Rezar",
                 info: "Cierras los ojos. Las palabras salen solas, sin sentido. La criatura se detiene " +
                     "frente a ti, como si escuchara algo más antiguo que tú. Luego, se da la vuelta y desaparece " +
-                    "entre las aguas. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
+                    "entre las aguas. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -343,7 +343,7 @@ const cards = [
                 text: "Miccionar",
                 info: "No puedes evitarlo. El calor se mezcla con el agua, y eso basta. " +
                     "Algo se lanza sobre ti desde abajo, y aunque logras apartarte, sientes el mordisco " +
-                    "clavarse más allá de la piel. <br> <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
+                    "clavarse más allá de la piel. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -359,7 +359,7 @@ const cards = [
                 text: "Romper el sello y abrir el libro",
                 info: "Con determinación, intentas romper el sello. Cuando lo logras, una energía oscura surge del " +
                     "libro y envuelve el ambiente. Las páginas empiezan a pasar solas hasta que se detienen en un " +
-                    "pasaje que brilla intensamente. \"Ahora eres quien porta el conocimiento prohibido.\" <br> <b> Obtienes la carta. " +
+                    "pasaje que brilla intensamente. \"Ahora eres quien porta el conocimiento prohibido.\" <b> Obtienes la carta. " +
                     "</b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -370,7 +370,7 @@ const cards = [
                 text: "Llevarte el libro",
                 info: "Guardas el libro cuidadosamente, esperando encontrar la forma de descifrar su contenido más adelante. " +
                     "Sin embargo, el peso del libro parece aumentar con cada paso, y una voz susurra \"No mereces tal honor. Aún.\" " +
-                    "El libro desaparece de tu bolsa sin dejar rastro. <br> <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "El libro desaparece de tu bolsa sin dejar rastro. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
                     "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
@@ -388,8 +388,8 @@ const cards = [
                 info: "La coges en brazos y te dispones a trasportarla, pero nada mas cargarla te muerde el abdomen. " +
                     "Era una trampa! Es un ser marino malvado que se aprovecha de los confiados viajeros para " +
                     "morderlos y llevárselos a su río putrefacto lleno de cadáveres. Te arrastra hasta el fondo " +
-                    "del río. Despiertas sofocado. Solo había sido una pesadilla. Pierdes la carta. Deja la carta " +
-                    "en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                    "del río. Despiertas sofocado. Solo había sido una pesadilla. <b> Pierdes la carta. </b> <i> Deja la carta " +
+                    "en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -398,7 +398,7 @@ const cards = [
             {
                 text: "No la ayudas",
                 info: "Desconfías. Te vas mientras escuchas los gritos de ese ser marino malvado que quería " +
-                    "comerse tus entrañas. Obtienes la carta. Guárdala en tu mano. Y continúas tu aventura donde estabas.",
+                    "comerse tus entrañas. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -412,8 +412,8 @@ const cards = [
         options: [
             {
                 text: "Atacar",
-                info: "Te avalanzas contra ese ser, pero te lanza contra un árbol y te debilita. Pierdes la carta. " +
-                    "Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                info: "Te avalanzas contra ese ser, pero te lanza contra un árbol y te debilita. <b> Pierdes la carta. " +
+                    "</b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -422,8 +422,8 @@ const cards = [
             {
                 text: "Esconderte y  esperar",
                 info: "La enorme criatura se marcha a proteger el rebaño y por el camino se le cae un objeto " +
-                    "metálico que llevaba entre su pelo. Obtienes la carta. Guárdala en tu mano. " +
-                    "Y continúas tu aventura donde estabas.",
+                    "metálico que llevaba entre su pelo. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. " +
+                    "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -440,8 +440,8 @@ const cards = [
                 info: "Comienzas a andar junto a la anciana, te comenta que tiene documentos importantes que no " +
                     "desea mojar. Llegas rápidamente al lago, pero notas que es bastante profundo. Intentas nadar " +
                     "pero te hundes poco a poco en el agua mientras miras a la anciana reír en la orilla. " +
-                    "Despiertas donde estabas. ¿Era un sueño? Pierdes la carta. Deja la carta en el mazo de descarte. " +
-                    "Y continúas tu aventura donde estabas.",
+                    "Despiertas donde estabas. ¿Era un sueño? <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -450,8 +450,8 @@ const cards = [
             {
                 text: "Irte por tu cuenta",
                 info: "Prefieres seguir el camino más seguro. La anciana grita de dolor y te ruega que la sigas " +
-                    "mientras su cuerpo se convierte en una estatua de sal. Obtienes la carta. Guárdala en tu mano. " +
-                    "Y continúas tu aventura donde estabas.",
+                    "mientras su cuerpo se convierte en una estatua de sal. <b> Obtienes la carta. </b> <i> Guárdala en tu mano. " +
+                    "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -465,12 +465,12 @@ const cards = [
         options: [
             {
                 text: "Tirar moneda",
-                info: "Cara: El lobo te ofrece su protección durante tu viaje. Guarda esta carta y podrás usarla para " +
-                    "no perder una carta aleatoria una vez. Cuando la uses deberás descartarla. " +
-                    "Obtienes la carta. Guárdala en tu mano. Y continúas tu aventura donde estabas. " +
-                    "Cruz: El lobo se marcha sin hacerte nada. Devuelve la carta al mazo para que otros viajeros " +
-                    "puedan encontrarse con este ser magnífico. Pierdes la carta. Deja la carta en el mazo de descarte. " +
-                    "Y continúas tu aventura donde estabas.",
+                info: "<b> Cara: </b> El lobo te ofrece su protección durante tu viaje. <b> Guarda esta carta y podrás usarla para " +
+                    "no perder una carta aleatoria una vez. </b> <i> Cuando la uses deberás descartarla. </i> " +
+                    "<b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúas tu aventura donde estabas. </i> " +
+                    "<br> <b> Cruz: </b> El lobo se marcha sin hacerte nada. Devuelve la carta al mazo para que otros viajeros " +
+                    "puedan encontrarse con este ser magnífico. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: true,
                 save: () => { return coinResult === "CARA"; },
