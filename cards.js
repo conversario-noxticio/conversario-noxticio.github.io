@@ -675,8 +675,8 @@ const cards = [
             {
                 text: "Aceptar",
                 info: "Si aceptas su oferta debes descartar dos cartas, las que tu quieras, y obtendrás esta carta " +
-                    "que te protegerá al final del juego. Obtienes la carta. Guárdala en tu mano y descarta dos, si " +
-                    "no tienes ninguna pierdes esta. Y continúas tu aventura donde estabas.",
+                    "que te protegerá al final del juego. <b> Obtienes la carta. </b> <i> Guárdala en tu mano y descarta dos, si " +
+                    "no tienes ninguna pierdes esta. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
@@ -686,8 +686,8 @@ const cards = [
                 text: "Rechazar",
                 info: "Unos brazos salen de la ermita y te atrapan en su interior. Te conviertes en el anciano, " +
                     "atrapado en la ermita hasta tu muerte. Cuando mueres despiertas y vuelves a donde estabas " +
-                    "antes para continuar tu camino. Pierdes la carta. Deja la carta en el mazo de descarte. " +
-                    "Y continúas tu aventura donde estabas.",
+                    "antes para continuar tu camino. <b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. " +
+                    "Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -696,7 +696,7 @@ const cards = [
             {
                 text: "Irte",
                 info: "Si no entras, la ermita desaparece, arrastrada por tentáculos a las profundidades. " +
-                    "Pierdes la carta. Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas.",
+                    "<b> Pierdes la carta. </b> <i> Deja la carta en el mazo de descarte. Y continúas tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return false; },
@@ -707,7 +707,7 @@ const cards = [
                 info: "Prosigues el camino, pero con una maldición. El guardián te observa de cerca; quiere " +
                     "ver cómo continúa tu aventura y no parará de vigilarte hasta que termine. Tienes la carta, " +
                     "sí, pero el precio a pagar es una sombra maldita de la que no podrás despegarte. " +
-                    "Obtienes la carta. Guárdala en tu mano. Y continúa tu aventura donde estabas.",
+                    "<b> Obtienes la carta. </b> <i> Guárdala en tu mano. Y continúa tu aventura donde estabas. </i>",
                 dice: false,
                 coin: false,
                 save: () => { return true; },
