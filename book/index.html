@@ -7,38 +7,24 @@
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="https://conversario-noxticio.github.io/images/favicon.png">
     <link rel="apple-touch-icon" href="https://conversario-noxticio.github.io/images/favicon-apple.png">
-    <style>
-        html, body { width: 100%; height: 100%; padding: 0; margin: 0; }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
 <body>
 
-<div id="adobe-dc-view" style="height: 100%; width: 100%;"></div>
-<script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
-<script type="text/javascript">
-    document.addEventListener("adobe_dc_view_sdk.ready", function(){
-        var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
-        adobeDCView.previewFile({
-            content:{location: {url: "https://conversario-noxticio.github.io/book/NOXTICIO - Explorando la oscuridad.pdf"}},
-            metaData:{fileName: "NOXTICIO - Explorando la oscuridad.pdf"}
-        }, {
-            embedMode: "SIZED_CONTAINER",
-            showDownloadPDF: false,
-            showPrintPDF: false,
-            showZoomControl: false,
-            showAnnotationTools: false,
-            showFullScreen: true,
-            showThumbnails: false,
-            showBookmarks: false,
-            enableLinearization: false,
-            enableAnnotationAPIs: false,
-            includePDFAnnotations: false,
-            enableSearchAPIs: false,
-            showDisabledSaveButton: false,
-        });
-    });
-</script>
+<div id="loadingSpinner">
+    <div class="spinner-ring"></div>
+</div>
+
+<embed id="pdfViewer" src="https://conversario-noxticio.github.io/book/NOXTICIO - Explorando la oscuridad.pdf#toolbar=0" type="application/pdf">
+
+<button id="fullscreenBtn" title="Pantalla completa">
+    <i class="material-icons">fullscreen</i>
+</button>
+
+<!-- Scripts -->
+<script src="script.js"></script>
 
 </body>
 </html>
